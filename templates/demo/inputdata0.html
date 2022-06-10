@@ -1,0 +1,171 @@
+{%extends 'main/site_base.html' %}
+
+{% load i18n %}
+{%load staticfiles%}
+{%block body%}
+
+<section class="mt-5">
+
+    <div class='col-12 text-center header'>
+        <h2>{% trans 'Please Input Patient Data'%}</h2>
+        {% for message in messages%}
+          <div class=" col-md-6 d-flex justify-content-center mx-auto {{message.tags}}">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div >
+        {%endfor%}
+    </div>
+    <div class='col-12 text-center'>
+
+        <div class='col-md-8 d-flex justify-content-center mx-auto'>
+            <form action="" method="post" class="cform-form mt-2" role='form'>
+                {%csrf_token%}
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="name" class="font-weight-bold align-self-center col-4">{% trans 'Name'%}</label>
+                    <input id="name" type="text" name="name" class="cform-text form-control col-5" title="Your name" value="{%if data.name %}{{data.name}}{%endif%}">
+                </div>
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="patientid" class="font-weight-bold align-self-center col-4">ID</label>
+                    <input id="patientid" type="text" name="patientid" class="cform-text form-control col-5" required
+                        title="Your patientid" value="{%if data.patientid %}{{data.patientid}}{%endif%}" >
+                </div>
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+                    <label for="age" class="font-weight-bold align-self-center col-4">{%trans 'Age'%}</label>
+                    <input id="age" type="number" name="age" min="1" class="cform-text form-control col-5"  required value="{%if data.age %}{{data.age}}{%endif%}"
+                        title="Your patientid">
+                </div>
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="gender" class="font-weight-bold align-self-end col-4">{%trans "Sex"%}</label>
+                    <select name="gender" id='gender' class="cform-text form-control col-5">
+                        <option value="f" {%if data.gender is 'f'%}selected{%endif%} >女</option>
+                        <option value="m" {%if data.gender is 'm'%}selected{%endif%} >男</option>
+                        <option value="o" {%if data.gender is 'o'%}selected{%endif%} >其他</option>
+
+                    </select>
+                </div>
+                <!--
+                <div class="form-group row mx-auto d-flex justify-content-center">
+                    <label for="height" class="font-weight-bold align-self-end col-4">{%trans 'Height'%}</label>
+                    <input id="height" type="number" name="height" min="1" class="cform-text form-control col-5" required value="{{data.height}}">
+                </div>
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="weight" class="font-weight-bold align-self-end col-4">{% trans 'Weight'%}</label>
+                    <input id="weight" type="number" name="weight" min="1" class="cform-text form-control col-5" required value="{{data.weight}}"
+                       >
+                </div>
+                -->
+
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="feveroption" class="font-weight-bold align-self-end col-4">{%trans 'Fever'%}</label>
+                    <select name="feveroption" id='feveroption' class="cform-text form-control col-5">
+                        <option value="true" {%if data.feveroption is "True"%}selected{%endif%} >True</option>
+                        <option value="false" {%if data.feveroption is "False"%}selected{%endif%} >False</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="odorousoption" class="font-weight-bold align-self-end col-4">{%trans 'Odorous'%}</label>
+                    <select name="odorousoption" id='odorousoption' class="cform-text form-control col-5">
+                        <option value="true" {%if data.odorousoption is "True"%}selected{%endif%} >True</option>
+                        <option value="false" {%if data.odorousoption is "False"%}selected{%endif%} >False</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="abnormaloption" class="font-weight-bold align-self-end col-4">{%trans 'Abnormal WBC'%}</label>
+                    <select name="abnormaloption" id='abnormaloption' class="cform-text form-control col-5">
+                        <option value="true" {%if data.abnormaloption is "True"%}selected{%endif%} >True</option>
+                        <option value="false" {%if data.abnormaloption is "False"%}selected{%endif%} >False</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="frequencyoption" class="font-weight-bold align-self-end col-4">{%trans 'Frequency'%}</label>
+                    <select name="frequencyoption" id='frequencyoption' class="cform-text form-control col-5">
+                        <option value="qd" {%if data.frequencyoption is "True"%}selected{%endif%} >QD</option>
+                        <option value="bid" {%if data.frequencyoption is "False"%}selected{%endif%} >BID</option>
+                        <option value="tid" {%if data.frequencyoption is "False"%}selected{%endif%} >TID</option>
+                        <option value="more" {%if data.frequencyoption is "False"%}selected{%endif%} >More</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+                    <label for="undermineoption" class="font-weight-bold align-self-end col-4">{%trans 'Undermine(tract)'%}</label>
+                    <select name="undermineoption" id='undermineoption' class="cform-text form-control col-5">
+                        <option value="true" {%if data.undermineoption is "True"%}selected{%endif%} >True</option>
+                        <option value="false" {%if data.undermineoption is "False"%}selected{%endif%} >False</option>
+                    </select>
+                </div>
+
+
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+                    <label for="hroption" class="font-weight-bold align-self-end col-4">{%trans 'HR > 90'%}</label>
+                    <select name="hroption" id='hroption' class="cform-text form-control col-5">
+                        <option value="true" {%if data.hroption is "True"%}selected{%endif%} >True</option>
+                        <option value="false" {%if data.hroption is "False"%}selected{%endif%} >False</option>
+                    </select>
+                </div>
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+                    <label for="pusoption" class="font-weight-bold align-self-end col-4">{%trans 'Pus'%}</label>
+                    <select name="pusoption" id='hroption' class="cform-text form-control col-5">
+                        <option value="true" {%if data.pusoption is "True"%}selected{%endif%} >True</option>
+                        <option value="false" {%if data.pusoption is "False"%}selected{%endif%} >False</option>
+                    </select>
+                </div>
+
+
+               <div class="form-group row mx-auto d-flex justify-content-center">
+                    <label for="comments" class="font-weight-bold col-4">{%trans 'Comment'%}</label>
+                    <textarea name="comments" cols="40" rows="10" title="Drop us a line." class='form-control col-5'>{{data.comments}}</textarea>
+                </div>
+
+                <div class='form-group row mx-auto d-flex justify-content-center'>
+
+                        <button id="clear" name="cleardata" class="btn btn-lg btn-secondary mr-1" >{%trans 'Clear'%}</button>
+                        <button id="submit" value="submit" name="submit" class="btn btn-lg btn-primary" type="submit" >{% trans 'Submit'%}</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+<script type="text/javascript">
+  var elements = document.querySelectorAll('input,select,textarea');
+  var invalidListener = function(){ this.scrollIntoView(false); };
+
+  for(var i = elements.length; i--;)
+      elements[i].addEventListener('invalid', invalidListener);
+
+</script>
+
+<script type="text/javascript" src="{% static 'js/inputdata.js' %}">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"></script>
+
+
+{%endblock%}

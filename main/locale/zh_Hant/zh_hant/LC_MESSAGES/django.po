@@ -1,0 +1,1095 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-25 01:52+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\account\forms.py:37 .\account\forms.py:117
+#, fuzzy
+#| msgid "name"
+msgid "Username"
+msgstr "姓名"
+
+#: .\account\forms.py:43 .\account\forms.py:132 .\account\forms.py:178
+#: .\account\forms.py:207 .\main\forms.py:8
+msgid "Email"
+msgstr "電子信箱"
+
+#: .\account\forms.py:47 .\account\forms.py:89
+msgid "Password"
+msgstr ""
+
+#: .\account\forms.py:51
+msgid "Password (again)"
+msgstr ""
+
+#: .\account\forms.py:62
+msgid "Usernames can only contain letters, numbers and underscores."
+msgstr ""
+
+#: .\account\forms.py:70
+msgid "This username is already taken. Please choose another."
+msgstr ""
+
+#: .\account\forms.py:77 .\account\forms.py:227
+msgid "A user is registered with this email address."
+msgstr ""
+
+#: .\account\forms.py:82 .\account\forms.py:172 .\account\forms.py:201
+msgid "You must type the same password each time."
+msgstr ""
+
+#: .\account\forms.py:93
+msgid "Remember Me"
+msgstr ""
+
+#: .\account\forms.py:106
+msgid "This account is inactive."
+msgstr ""
+
+#: .\account\forms.py:118
+msgid "The username and/or password you specified are not correct."
+msgstr ""
+
+#: .\account\forms.py:133
+msgid "The email address and/or password you specified are not correct."
+msgstr ""
+
+#: .\account\forms.py:148
+msgid "Current Password"
+msgstr ""
+
+#: .\account\forms.py:152 .\account\forms.py:190
+msgid "New Password"
+msgstr ""
+
+#: .\account\forms.py:156 .\account\forms.py:194
+msgid "New Password (again)"
+msgstr ""
+
+#: .\account\forms.py:166
+msgid "Please type your current password."
+msgstr ""
+
+#: .\account\forms.py:183
+msgid "Email address can not be found."
+msgstr ""
+
+#: .\account\forms.py:209
+msgid "Timezone"
+msgstr ""
+
+#: .\account\forms.py:215
+msgid "Language"
+msgstr ""
+
+#: .\account\middleware.py:80
+msgid "Your password has expired. Please save a new password."
+msgstr ""
+
+#: .\account\models.py:27 .\account\models.py:143
+msgid "code"
+msgstr ""
+
+#: .\account\models.py:33 .\account\models.py:150 .\dashboard\models.py:61
+#: .\dashboard\models.py:68 .\main\models.py:11
+msgid "created"
+msgstr ""
+
+#: .\account\models.py:41 .\account\models.py:413
+msgid "user"
+msgstr ""
+
+#: .\account\models.py:42
+msgid "timezone"
+msgstr ""
+
+#: .\account\models.py:44
+msgid "language"
+msgstr ""
+
+#: .\account\models.py:144
+msgid "max uses"
+msgstr ""
+
+#: .\account\models.py:145
+msgid "expiry"
+msgstr ""
+
+#: .\account\models.py:148
+msgid "notes"
+msgstr ""
+
+#: .\account\models.py:149
+msgid "sent"
+msgstr ""
+
+#: .\account\models.py:151
+msgid "use count"
+msgstr ""
+
+#: .\account\models.py:154
+msgid "signup code"
+msgstr ""
+
+#: .\account\models.py:155
+msgid "signup codes"
+msgstr ""
+
+#: .\account\models.py:261
+msgid "verified"
+msgstr ""
+
+#: .\account\models.py:262
+msgid "primary"
+msgstr ""
+
+#: .\account\models.py:267
+msgid "email address"
+msgstr ""
+
+#: .\account\models.py:268
+msgid "email addresses"
+msgstr ""
+
+#: .\account\models.py:317
+msgid "email confirmation"
+msgstr ""
+
+#: .\account\models.py:318
+msgid "email confirmations"
+msgstr ""
+
+#: .\account\models.py:367
+msgid "date requested"
+msgstr ""
+
+#: .\account\models.py:368
+msgid "date expunged"
+msgstr ""
+
+#: .\account\models.py:371
+msgid "account deletion"
+msgstr ""
+
+#: .\account\models.py:372
+msgid "account deletions"
+msgstr ""
+
+#: .\account\models.py:401
+msgid "password history"
+msgstr ""
+
+#: .\account\models.py:402
+msgid "password histories"
+msgstr ""
+
+#: .\account\views.py:67 .\account\views.py:567
+msgid "Password successfully changed."
+msgstr ""
+
+#: .\account\views.py:142
+#, python-brace-format
+msgid "Confirmation email sent to {email}."
+msgstr ""
+
+#: .\account\views.py:146
+#, python-brace-format
+msgid "The code {code} is invalid."
+msgstr ""
+
+#: .\account\views.py:472
+#, python-brace-format
+msgid "You have confirmed {email}."
+msgstr ""
+
+#: .\account\views.py:476
+#, python-brace-format
+msgid "Email confirmation for {email} has expired."
+msgstr ""
+
+#: .\account\views.py:742
+msgid "Account settings updated."
+msgstr ""
+
+#: .\account\views.py:826
+#, python-brace-format
+msgid ""
+"Your account is now inactive and your data will be expunged in the next "
+"{expunge_hours} hours."
+msgstr ""
+
+#: .\pressure_sore_with_admin\settings.py:170
+msgid "English"
+msgstr ""
+
+#: .\pressure_sore_with_admin\settings.py:171
+msgid "Traditional Chinese"
+msgstr ""
+
+#: .\templates\404.html:5
+msgid "Not Found"
+msgstr ""
+
+#: .\templates\404.html:9
+msgid "Page not found"
+msgstr ""
+
+#: .\templates\404.html:10
+msgid "We're sorry but that page could not be found."
+msgstr ""
+
+#: .\templates\500.html:5
+msgid "Server Error"
+msgstr ""
+
+#: .\templates\500.html:9
+msgid "Something went wrong"
+msgstr ""
+
+#: .\templates\500.html:10
+msgid ""
+"We're sorry but a server error has occurred. We've been notified and will "
+"look into it as soon as possible."
+msgstr ""
+
+#: .\templates\_account_bar.html:12 .\templates\account\base.html:9
+msgid "Settings"
+msgstr ""
+
+#: .\templates\_account_bar.html:14
+msgid "Admin"
+msgstr ""
+
+#: .\templates\_account_bar.html:18 .\templates\account\logout.html:6
+#: .\templates\account\logout.html:13 .\templates\account\logout.html:17
+msgid "Log out"
+msgstr ""
+
+#: .\templates\_account_bar.html:23 .\templates\account\login.html:8
+#: .\templates\account\login.html:21 .\templates\account\signup.html:23
+#: .\templates\test\login.html:8 .\templates\test\login.html:22
+msgid "Log in"
+msgstr ""
+
+#: .\templates\_account_bar.html:25 .\templates\account\login.html:27
+#: .\templates\account\signup.html:7 .\templates\account\signup.html:13
+#: .\templates\account\signup.html:19 .\templates\account\signup_closed.html:5
+#: .\templates\test\login.html:30
+msgid "Sign up"
+msgstr ""
+
+#: .\templates\account\base.html:12 .\templates\account\settings.html:8
+#: .\templates\account\settings.html:14
+msgid "Account"
+msgstr ""
+
+#: .\templates\account\base.html:15 .\templates\account\password_change.html:8
+#: .\templates\account\password_change.html:14
+msgid "Change password"
+msgstr ""
+
+#: .\templates\account\base.html:18
+msgid "Delete account"
+msgstr ""
+
+#: .\templates\account\delete.html:7 .\templates\account\delete.html:10
+msgid "Delete Account"
+msgstr ""
+
+#: .\templates\account\delete.html:12
+#, python-format
+msgid ""
+"If you go ahead and delete your account, your information will be "
+"<b>expunged within %(ACCOUNT_DELETION_EXPUNGE_HOURS)s hours</b>."
+msgstr ""
+
+#: .\templates\account\delete.html:16
+msgid "Delete My Account"
+msgstr ""
+
+#: .\templates\account\email\email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"A user on %(site_name)s has created an account using this email address.\n"
+"\n"
+"To confirm this email address, go to %(activate_url)s\n"
+"\n"
+"If you did not sign up for this site, you can ignore this message.\n"
+msgstr ""
+
+#: .\templates\account\email\email_confirmation_subject.txt:1
+#, python-format
+msgid "Confirm email address for %(site_name)s"
+msgstr ""
+
+#: .\templates\account\email\invite_user.txt:1
+#, python-format
+msgid ""
+"You have been invited to sign up at %(name)s.\n"
+"\n"
+"%(signup_url)s\n"
+msgstr ""
+
+#: .\templates\account\email\invite_user_subject.txt:1
+#, python-format
+msgid "Create an account on %(name)s"
+msgstr ""
+
+#: .\templates\account\email\password_change.txt:1
+#, python-format
+msgid ""
+"This is the email notification to confirm your password has been changed on "
+"%(now)s."
+msgstr ""
+
+#: .\templates\account\email\password_change_subject.txt:1
+msgid "Change password email notification"
+msgstr ""
+
+#: .\templates\account\email\password_reset.txt:1
+#, python-format
+msgid ""
+"You're receiving this email because you or someone else has requested a "
+"password for your user account at %(site_name)s.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password.\n"
+"\n"
+"%(password_reset_url)s\n"
+msgstr ""
+
+#: .\templates\account\email\password_reset_subject.txt:1
+#, python-format
+msgid "[%(site_name)s] Password reset"
+msgstr ""
+
+#: .\templates\account\email_confirm.html:5
+#: .\templates\account\email_confirm.html:11
+msgid "Confirm Email"
+msgstr ""
+
+#: .\templates\account\email_confirm.html:14
+#, python-format
+msgid "Confirm email address <b>%(email)s</b>?"
+msgstr ""
+
+#: .\templates\account\email_confirm.html:15
+msgid "Confirm"
+msgstr ""
+
+#: .\templates\account\email_confirmation_sent.html:5
+#: .\templates\account\email_confirmation_sent.html:8
+msgid "Confirm your email address"
+msgstr ""
+
+#: .\templates\account\email_confirmation_sent.html:10
+#, python-format
+msgid ""
+"We have sent you an email to <b>%(email)s</b> for verification. Follow the "
+"link provided to finalize the signup process. If you do not receive it "
+"within a few minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
+"\">%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: .\templates\account\email_confirmation_sent.html:11
+msgid "Go back"
+msgstr ""
+
+#: .\templates\account\email_confirmed.html:5
+#: .\templates\account\email_confirmed.html:8
+msgid "Email confirmed"
+msgstr ""
+
+#: .\templates\account\email_confirmed.html:9
+#, python-format
+msgid "You have confirmed <b>%(email)s</b>"
+msgstr ""
+
+#: .\templates\account\login.html:15
+msgid "Log in to an existing account"
+msgstr ""
+
+#: .\templates\account\login.html:22 .\templates\test\login.html:23
+msgid "Forgot your password?"
+msgstr ""
+
+#: .\templates\account\login.html:27 .\templates\test\login.html:30
+msgid "Don't have an account?"
+msgstr ""
+
+#: .\templates\account\logout.html:14
+msgid "Are you sure you want to log out?"
+msgstr ""
+
+#: .\templates\account\password_change.html:18
+#: .\templates\account\password_reset_token.html:16
+#: .\templates\account\settings.html:17
+#: .\templates\pinax\announcements\announcement_form.html:23
+msgid "Save"
+msgstr ""
+
+#: .\templates\account\password_reset.html:7
+#: .\templates\account\password_reset.html:15
+msgid "Password reset"
+msgstr ""
+
+#: .\templates\account\password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll send you "
+"an email allowing you to reset it."
+msgstr ""
+
+#: .\templates\account\password_reset.html:22
+msgid "Reset my password"
+msgstr ""
+
+#: .\templates\account\password_reset.html:29
+#, python-format
+msgid ""
+"If you have any trouble resetting your password, contact us at <a href="
+"\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: .\templates\account\password_reset_sent.html:6
+#: .\templates\account\password_reset_sent.html:9
+msgid "Password reset sent"
+msgstr ""
+
+#: .\templates\account\password_reset_sent.html:11
+#, python-format
+msgid ""
+"We have sent you an email. If you do not receive it within a few minutes, "
+"try resending or contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: .\templates\account\password_reset_sent.html:20
+msgid "Resend"
+msgstr ""
+
+#: .\templates\account\password_reset_sent.html:25
+#, python-format
+msgid ""
+"We have resent the password email. If you do not receive it within a few "
+"minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: .\templates\account\password_reset_token.html:6
+#: .\templates\account\password_reset_token.html:12
+msgid "Set your new password"
+msgstr ""
+
+#: .\templates\account\password_reset_token_fail.html:5
+#: .\templates\account\password_reset_token_fail.html:8
+msgid "Bad token"
+msgstr ""
+
+#: .\templates\account\password_reset_token_fail.html:10
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(url)s\">new password reset</a>."
+msgstr ""
+
+#: .\templates\account\signup.html:23
+msgid "Already have an account?"
+msgstr ""
+
+#: .\templates\account\signup_closed.html:8
+msgid "This site is in private beta"
+msgstr ""
+
+#: .\templates\account\signup_closed.html:9
+msgid "If you have signup code you can enter it below."
+msgstr ""
+
+#: .\templates\account\signup_closed.html:11
+msgid "Your signup code..."
+msgstr ""
+
+#: .\templates\backup.html:16 .\templates\main - Copy\index.html:19
+msgid "Artificial Intelligence Burn Wound Diagnosis System"
+msgstr "人工智慧協助燒燙傷診斷系統"
+
+#: .\templates\backup.html:18
+msgid "透過AI模型判斷燒傷傷口範圍"
+msgstr ""
+
+#: .\templates\backup.html:19
+msgid "透過AI模型判斷手掌面積範圍"
+msgstr ""
+
+#: .\templates\backup.html:20
+msgid "判斷燒傷傷口面積與提供治療建議"
+msgstr ""
+
+#: .\templates\demo\burnupload.html:24
+msgid "Please Upload Wound Image"
+msgstr "請上傳褥瘡傷口影像"
+
+#: .\templates\demo\burnupload.html:44
+msgid "Add"
+msgstr "新增"
+
+#: .\templates\demo\burnupload.html:53
+msgid "Image"
+msgstr "影像"
+
+#: .\templates\demo\burnupload.html:54
+msgid "Location"
+msgstr "傷口部位"
+
+#: .\templates\demo\burnupload.html:54
+msgid "Distance"
+msgstr "拍照距離"
+
+#: .\templates\demo\burnupload.html:55
+#: .\templates\pinax\announcements\announcement_confirm_delete.html:21
+#: .\templates\pinax\announcements\announcement_form.html:21
+#: .\templates\pinax\documents\document_confirm_delete.html:30
+#: .\templates\pinax\documents\folder_confirm_delete.html:30
+#: .\templates\pinax\messages\thread_confirm_delete.html:28
+msgid "Delete"
+msgstr "刪除"
+
+#: .\templates\demo\burnupload.html:130 .\templates\demo\handupload.html:46
+msgid "Back"
+msgstr "回上一頁"
+
+#: .\templates\demo\burnupload.html:131 .\templates\demo\handupload.html:47
+#: .\templates\demo\inputdata.html:209 .\templates\demo\inputdata0.html:146
+msgid "Submit"
+msgstr "送出"
+
+#: .\templates\demo\handupload.html:8
+msgid "Please Upload Hand Palm Image"
+msgstr "請上傳手掌影像"
+
+#: .\templates\demo\handupload.html:39
+msgid "Upload"
+msgstr "上傳"
+
+#: .\templates\demo\inputdata.html:10 .\templates\demo\inputdata0.html:10
+msgid "Please Input Patient Data"
+msgstr "請輸入病人資料"
+
+#: .\templates\demo\inputdata.html:26 .\templates\demo\inputdata0.html:27
+#: .\main\forms.py:7
+msgid "Name"
+msgstr "姓名"
+
+#: .\templates\demo\inputdata.html:38 .\templates\demo\inputdata0.html:39
+msgid "Age"
+msgstr "年齡"
+
+#: .\templates\demo\inputdata.html:45 .\templates\demo\inputdata0.html:46
+#: .\templates\demo\resultwound.html:134 .\templates\demo\resultwound2.html:133
+#: .\templates\demo\test.html:133
+msgid "Sex"
+msgstr "性別"
+
+#: .\templates\demo\inputdata.html:55 .\templates\demo\inputdata0.html:56
+msgid "Height"
+msgstr "身高"
+
+#: .\templates\demo\inputdata.html:61 .\templates\demo\inputdata0.html:62
+msgid "Weight"
+msgstr "體重"
+
+#: .\templates\demo\inputdata.html:73 .\templates\demo\inputdata0.html:71
+msgid "Fever"
+msgstr "發燒"
+
+#: .\templates\demo\inputdata.html:91 .\templates\demo\inputdata0.html:91
+msgid "Abnormal WBC"
+msgstr "白血球數目異常"
+
+#: .\templates\demo\inputdata.html:109 .\templates\demo\inputdata0.html:122
+msgid "HR > 90"
+msgstr "心跳每分鐘>90次"
+
+#: .\templates\demo\inputdata.html:128 .\templates\demo\inputdata0.html:130
+msgid "Pus"
+msgstr "傷口有膿瘍"
+
+#: .\templates\demo\inputdata.html:147 .\templates\demo\inputdata0.html:81
+msgid "Odorous"
+msgstr "傷口惡臭"
+
+#: .\templates\demo\inputdata.html:166
+msgid "Undermine"
+msgstr "廔管或通道"
+
+#: .\templates\demo\inputdata.html:186 .\templates\demo\inputdata0.html:101
+msgid "Frequency"
+msgstr "紗布完全滲濕"
+
+#: .\templates\demo\inputdata.html:199 .\templates\demo\inputdata0.html:139
+msgid "Comment"
+msgstr "備註"
+
+#: .\templates\demo\inputdata.html:208 .\templates\demo\inputdata0.html:145
+msgid "Clear"
+msgstr "清除"
+
+#: .\templates\demo\inputdata0.html:112
+msgid "Undermine(tract)"
+msgstr ""
+
+#: .\templates\demo\resultwound.html:116 .\templates\demo\resultwound2.html:115
+#: .\templates\demo\test.html:115
+msgid "Patient Name"
+msgstr ""
+
+#: .\templates\demo\resultwound.html:125 .\templates\demo\resultwound2.html:124
+#: .\templates\demo\test.html:124
+msgid "Patient ID"
+msgstr ""
+
+#: .\templates\demo\resultwound.html:235 .\templates\demo\resultwound2.html:234
+#: .\templates\demo\test.html:234
+msgid "More"
+msgstr ""
+
+#: .\templates\main - Copy\header.html:14 .\templates\main\header.html:18
+msgid "Home"
+msgstr "首頁"
+
+#: .\templates\main - Copy\header.html:15 .\templates\main\header.html:19
+msgid "About"
+msgstr "關於"
+
+#: .\templates\main - Copy\header.html:16 Copy\index.html:145
+#: .\templates\main\header.html:20 .\templates\main\index.html:139
+msgid "Real case diagnosis"
+msgstr "實際診斷案例"
+
+#: .\templates\main - Copy\header.html:17 Copy\index.html:366
+#: .\templates\main\header.html:21 .\templates\main\index.html:430
+msgid "Team"
+msgstr "合作團隊"
+
+#: .\templates\main - Copy\header.html:19 .\templates\main\header.html:22
+#: .\templates\main\index.html:606
+msgid "Contact"
+msgstr "聯絡"
+
+#: .\templates\main - Copy\index.html:21
+msgid "Using AI model to predict burn wound area"
+msgstr "透過AI模型判斷燒傷傷口範圍"
+
+#: .\templates\main - Copy\index.html:22
+msgid "Using AI model to predict palm area"
+msgstr "透過AI模型判斷手掌面積範圍"
+
+#: .\templates\main - Copy\index.html:23 .\templates\main\index.html:20
+msgid "Determining wound area and recommending medical treatment"
+msgstr "判斷褥瘡傷口面積與提供治療建議"
+
+#: .\templates\main - Copy\index.html:45
+msgid "Artificial Intelligence Burn Wound Diagnosis"
+msgstr "人工智慧協助燒燙傷診斷系統"
+
+#: .\templates\main - Copy\index.html:46
+msgid ""
+"According to WHO statistics, about 265,000 people died from burns and scalds "
+"wound every year. In the United States itself, about 10,000,000 peoples go "
+"to the emergency department for burns and scalds wound every year. And in "
+"Taiwan, there are 7,000 hospitalized patients with burns and scalds every "
+"year."
+msgstr ""
+"根據WHO的統計，每年因燒燙傷死亡的人數約有265,000人，在美國，每年因燒燙傷而到"
+"急診就醫約有10,000,000人次，在台灣，每年因燒燙傷住院的病患也有7,000人次。"
+
+#: .\templates\main - Copy\index.html:49 .\templates\main\index.html:49
+msgid ""
+"Burns and scalds are accidents that closely related to our daily lives. It "
+"can be caused by cooking or taking a bath. Effective treatment of burns and "
+"scalds require accurate judgment of the area and depth of burns and scalds. "
+"However, this requires a lot of clinical experience. Fortunately, there are "
+"instruments that can be used to diagnose the depth of burns and scalds, such "
+"as laser Duppler and infrared Thermal imaging camera, etc.; However, the "
+"judgment of burn and scald area is still estimated by visual observation. "
+"Therefore, documents in various countries have pointed out (Harish V, Burns. "
+"2015. Baartmans MG, Injury. 2012.), this method makes emergency or "
+"Outpatient doctors and plastic surgeons have very different estimates of "
+"burn area. Not only that, but different burn experts also have very "
+"different estimation of the same patient (Giretzlehner M, Burns. 2013). "
+"Knowing accurately the area of scald or burn wound is important because it "
+"is related to the amount of fluids given, the nutrients given, whether the "
+"intensive care unit is needed, and to know whether the hospitals are able to "
+"take care of them or not."
+msgstr ""
+"燒燙傷是與我們生活息息相關的意外，煮菜或是洗澡都有可能造成。 有效的燒燙傷治"
+"療，需要對燒燙傷的面積與深度做準確的判斷，然而這需要靠大量的臨床經驗，幸好目"
+"前有的儀器可用於燒燙傷深度的診斷，像是雷射督普勒、紅外線熱像儀等；然而對燒燙"
+"傷面積的判斷卻仍是用目測的估計，因此各國的文獻都指出(Harish V, Burns. 2015. "
+"Baartmans MG, Injury. 2012.)，這樣的方式，使得急診或門診醫師與整形外科醫師，"
+"在燒傷面積的估計上有很大的差異，不僅如此，不同燒傷專家對同一位病患的估計也有"
+"很大的差異(Giretzlehner M, Burns. 2013)，準確地知道燒燙傷面積是非常重要，因為"
+"這與給予輸液的量，給予的營養素，是否需要加護病房，醫療院所有無能力可以照護有"
+"關。"
+
+#: .\templates\main - Copy\index.html:52 .\templates\main\index.html:52
+#, fuzzy, python-format
+#| msgid ""
+#| "In order to solve this problem, we collected thousands of images of burns "
+#| "and scalds and labeled those images by many of plastic surgeons. Then we "
+#| "used multiple deep learning algorithms and trained models to "
+#| "automatically diagnose various depths' area. The extent of burns and "
+#| "scalds. In order to calculate the area of burns and scalds, we have also "
+#| "trained other models to accurately determine the palm area. Since the "
+#| "palm (excluding fingers) is 0.5%% of the total body surface area in "
+#| "children or adults. By recording the patient’s wound and palm at the same "
+#| "or known photographing distance, the burn area can be calculated using an "
+#| "artificial intelligence model."
+msgid ""
+"In order to solve this problem, we collected thousands of images of burns "
+"and scalds and labeled those images by many of plastic surgeons. Then we "
+"used multiple deep learning algorithms and trained models to automatically "
+"diagnose various depths' area. The extent of burns and scalds. In order to "
+"calculate the area of burns and scalds, we have also trained other models to "
+"accurately determine the palm area. Since the palm (excluding fingers) is "
+"0.5%% of the total body surface area in children or adults. By recording the "
+"patient’s wound and palm at the same or known photographing distance, the "
+"burn area can be calculated using an artificial intelligence model."
+msgstr ""
+"為了解決這個問題，我們收集了上千張燒燙傷的影像，並由多位整形外科醫師對這些影"
+"像標註，接著我們以多個深度學習的演算法，訓練後的模型，可以自動的診斷出各種深"
+"度燒燙傷的範圍。為了算出燒燙傷的面積，我們另外訓練了其他模型，可以準確的判斷"
+"手掌範圍，由於手掌(不含手指)在兒童或成人，都是0.5% 全身體表面積。在相同或已知"
+"的拍照距離紀錄病患傷口與手掌，就可以以人工智慧的模型計算出燒傷面積。"
+
+#: .\templates\main - Copy\index.html:68 Copy\index.html:76 Copy\index.html:84
+#: .\templates\main\index.html:69 .\templates\main\index.html:78
+msgid "Step"
+msgstr "步驟"
+
+#: .\templates\main - Copy\index.html:69 .\templates\main\index.html:70
+msgid "Upload wound images "
+msgstr "上傳褥瘡傷口影像"
+
+#: .\templates\main - Copy\index.html:70 .\templates\main\index.html:71
+msgid "Take or choose multiple wound images to upload"
+msgstr "拍攝或多選傷口影像上傳檔案"
+
+#: .\templates\main - Copy\index.html:77
+msgid "Upload palm image"
+msgstr "上傳手掌影像"
+
+#: .\templates\main - Copy\index.html:78
+msgid "Take or choose single palm image to upload"
+msgstr "拍攝或選擇單一手掌影像上傳檔案"
+
+#: .\templates\main - Copy\index.html:85 .\templates\main\index.html:79
+msgid "Enter patient's data"
+msgstr "輸入病患者資料"
+
+#: .\templates\main - Copy\index.html:87 .\templates\main\index.html:81
+msgid ""
+"After filling the form, you can get AI diagnose result and medical treatment "
+"recommendation"
+msgstr "填寫資料後可得到AI判斷與醫療相關建議"
+
+#: .\templates\main - Copy\index.html:107 .\templates\main\index.html:101
+msgid "Hospital Usage"
+msgstr "醫院使用"
+
+#: .\templates\main - Copy\index.html:115 .\templates\main\index.html:109
+msgid "Images of The Trained Model"
+msgstr "資料影像之模型"
+
+#: .\templates\main - Copy\index.html:123 .\templates\main\index.html:117
+msgid "Hours Of Service"
+msgstr "小時服務"
+
+#: .\templates\main - Copy\index.html:131 .\templates\main\index.html:125
+msgid "Hard Workers"
+msgstr "積極的員工"
+
+#: .\templates\main - Copy\index.html:146 .\templates\main\index.html:140
+msgid "By using our AI model"
+msgstr "透過我們提供之AI褥瘡傷口模型"
+
+#: .\templates\main - Copy\index.html:146
+msgid "you can diagnose wound area of differents burn level"
+msgstr ""
+
+#: .\templates\main - Copy\index.html:305 .\templates\main\index.html:299
+msgid "All"
+msgstr "全部"
+
+#: .\templates\main\header.html:23
+msgid "Demo"
+msgstr ""
+
+#: .\templates\main\index.html:16
+msgid "Artificial Intelligence Chronic Ulcer Diagnosis System"
+msgstr "人工智慧協助褥瘡傷口診斷系統"
+
+#: .\templates\main\index.html:18
+msgid "Using AI model to predict wound area"
+msgstr "透過AI模型判斷褥瘡傷口範圍"
+
+#: .\templates\main\index.html:19
+msgid "Using AI model to predict different types of tissues"
+msgstr "透過AI模型判斷褥瘡傷口範圍"
+
+#: .\templates\main\index.html:23
+msgid "Get Started"
+msgstr "開始使用"
+
+#: .\templates\main\index.html:24
+msgid "Learn More"
+msgstr "了解更多"
+
+#: .\templates\main\index.html:42
+msgid "Artificial Intelligence Wound Diagnosis"
+msgstr "人工智慧協助褥瘡傷口診斷系統"
+
+#: .\templates\main\index.html:43
+msgid ""
+"Pressure ulcer or pressure sore is a pressure-induced injury upon skin "
+"inside out from bony eminence. These injuries appear most commonly on the "
+"sacral area, followed by the heel and occipital region. The mechanism is to "
+"apply on the skin more than end capillary pressure, which is 20-30 mmHg. "
+"Since no blood can flow in, the tissues were gradually necrosis. However, "
+"simply applying that level of pressure to the skin may not necessarily "
+"result in a pressure ulcer. It was found that pressure should persist for "
+"more than 2 hours to cause irreversible ischemic damage. "
+msgstr ""
+
+#: .\templates\main\index.html:44
+msgid ""
+"Patients who developed pressure ulcers have different etiologies to prevent "
+"their protective mechanism of the spontaneous position change. It could be "
+"medical conditions, such as stroke, spine cord injury, shock, malnutrition, "
+"antidepressant, and catheter use. Major surgery or trauma are also "
+"contributing factors."
+msgstr ""
+
+#: .\templates\main\index.html:47
+#, python-format
+msgid ""
+"In the United States, pressure ulcers affected around 3 million adults "
+"annually. In Europe, the prevalence rates ranged from 8.3%% to 23%% among "
+"different countries. The prevalence rate is higher in long-term care "
+"facilities than in hospitals. Although this tissue had got attention from "
+"the public, the prevalence of pressure ulcers has remained unchanged in this "
+"decade. As the life span of humans increased, the affected populations are "
+"expected to rise. We are devoted to develop automatic wound diagnosis tools "
+"based on deep learning. The Tools provide an objective assessment of wound "
+"size and tissue classification, and more advance advice such as whether the "
+"wound require debridement."
+msgstr ""
+
+#: .\templates\main\index.html:140
+msgid "you can diagnose wound area of different types of tissues"
+msgstr ""
+
+#: .\templates\main\index.html:557
+msgid "Acknowledgement"
+msgstr "特別感謝"
+
+#: .\templates\main\index.html:617
+msgid "Our Address"
+msgstr ""
+
+#: .\templates\main\index.html:618
+msgid ""
+"No.21, Sec. 2, Nanya S. Rd.<br>Banciao Dist., New Taipei City 220, Taiwan (R."
+"O.C.)"
+msgstr "新北市板橋區南雅南路二段21號"
+
+#: .\templates\main\index.html:626
+msgid "Email Us"
+msgstr ""
+
+#: .\templates\main\index.html:676
+msgid "Send email fail, please try again."
+msgstr "傳送電子郵件失敗，請重新寄件。"
+
+#: .\templates\main\index.html:682
+msgid "Your message has been sent. Thank you!"
+msgstr "您的郵件已傳送成功，謝謝您!"
+
+#: .\templates\main\index.html:688
+msgid "Send Message"
+msgstr "傳送訊息"
+
+#: .\templates\main\site_base.html:83 .\templates\main\site_base.html:89
+msgid "處理中，請稍後"
+msgstr ""
+
+#: .\templates\main\site_base.html:83 .\templates\main\site_base.html:89
+msgid "保持連線"
+msgstr ""
+
+#: .\templates\pagination\builtin_pagination.html:9
+#: .\templates\pagination\builtin_pagination.html:12
+#: .\templates\pagination\django_pagination_pagination.html:8
+#: .\templates\pagination\django_pagination_pagination.html:11
+msgid "Previous"
+msgstr ""
+
+#: .\templates\pagination\builtin_pagination.html:18
+#: .\templates\pagination\builtin_pagination.html:20
+#: .\templates\pagination\django_pagination_pagination.html:21
+#: .\templates\pagination\django_pagination_pagination.html:23
+msgid "Next"
+msgstr ""
+
+#: .\templates\pagination\builtin_pagination_reverse.html:10
+#: .\templates\pagination\builtin_pagination_reverse.html:13
+msgid "Newer"
+msgstr ""
+
+#: .\templates\pagination\builtin_pagination_reverse.html:19
+#: .\templates\pagination\builtin_pagination_reverse.html:21
+msgid "Older"
+msgstr ""
+
+#: .\templates\pinax\announcements\announcement_confirm_delete.html:8
+msgid "Delete Announcement?"
+msgstr ""
+
+#: .\templates\pinax\announcements\announcement_confirm_delete.html:11
+msgid "Are you sure you want to delete this announcement?"
+msgstr ""
+
+#: .\templates\pinax\announcements\announcement_confirm_delete.html:20
+#: .\templates\pinax\announcements\announcement_form.html:19
+#: .\templates\pinax\documents\document_confirm_delete.html:29
+#: .\templates\pinax\documents\folder_confirm_delete.html:29
+#: .\templates\pinax\messages\thread_confirm_delete.html:27
+msgid "Cancel"
+msgstr ""
+
+#: .\templates\pinax\announcements\announcement_form.html:8
+msgid "Edit Announcement"
+msgstr ""
+
+#: .\templates\pinax\announcements\announcement_form.html:8
+msgid "Create Announcement"
+msgstr ""
+
+#: .\templates\pinax\announcements\announcement_list.html:5
+msgid "Announcements Admin"
+msgstr ""
+
+#: .\templates\pinax\announcements\announcement_list.html:9
+msgid "Announcements"
+msgstr ""
+
+#: .\templates\pinax\announcements\announcement_list.html:11
+msgid "Add New Announcement"
+msgstr ""
+
+#: .\templates\pinax\announcements\announcement_list.html:20
+msgid "Edit"
+msgstr ""
+
+#: .\templates\pinax\documents\document_confirm_delete.html:10
+msgid "Delete Document?"
+msgstr ""
+
+#: .\templates\pinax\documents\document_confirm_delete.html:19
+msgid "Are you sure you want to delete this document?"
+msgstr ""
+
+#: .\templates\pinax\documents\folder_confirm_delete.html:10
+msgid "Delete Folder?"
+msgstr ""
+
+#: .\templates\pinax\documents\folder_confirm_delete.html:17
+msgid "Are you sure you want to delete this folder and all of it's contents?"
+msgstr ""
+
+#: .\templates\pinax\invitations\_invite_form.html:15
+msgid "Invite"
+msgstr ""
+
+#: .\templates\pinax\invitations\_invite_form.html:21
+msgid "You do not have any invitations currrently."
+msgstr ""
+
+#: .\templates\pinax\invitations\_invited.html:17
+msgid "You have not sent any invitations yet."
+msgstr ""
+
+#: .\templates\pinax\messages\thread_confirm_delete.html:10
+msgid "Delete Thread?"
+msgstr ""
+
+#: .\templates\pinax\messages\thread_confirm_delete.html:17
+msgid "Are you sure you want to delete this thread?"
+msgstr ""
+
+#: .\main\forms.py:9 .\main\forms.py:28
+msgid "Subject"
+msgstr "標題"
+
+#: .\main\forms.py:10 .\main\forms.py:35
+msgid "Message"
+msgstr "訊息"
+
+#: .\main\forms.py:14
+msgid "name"
+msgstr "姓名"
+
+#: .\main\forms.py:15
+msgid "Your Name"
+msgstr "您的姓名"
+
+#: .\main\forms.py:16
+msgid "Please enter at least 3 chars"
+msgstr "請輸入至少3個字"
+
+#: .\main\forms.py:21
+msgid "email"
+msgstr "電子信箱"
+
+#: .\main\forms.py:22
+msgid "Your Email"
+msgstr "您的電子信箱"
+
+#: .\main\forms.py:23
+msgid "Please enter a valid email"
+msgstr "請輸入正確店"
+
+#: .\main\forms.py:27
+msgid "subject"
+msgstr "標題"
+
+#: .\main\forms.py:29
+msgid "Please enter at least 8 chars of subject"
+msgstr "請輸入標題至少8個字"
+
+#: .\main\forms.py:34
+msgid "message"
+msgstr "訊息"
+
+#: .\main\forms.py:36
+msgid "Please write something for us"
+msgstr "請寫上您寶貴的意見"
+
+#~ msgid "TBSA estimation"
+#~ msgstr "TBSA估計"
+
+#~ msgid "Type"
+#~ msgstr "類別"

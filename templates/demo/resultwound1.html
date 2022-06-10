@@ -1,0 +1,558 @@
+{%extends 'main/site_base.html' %}
+
+{%load staticfiles%}
+{% block body%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js" integrity="sha512-f0VlzJbcEB6KiW8ZVtL+5HWPDyW1+nJEjguZ5IVnSQkvZbwBt2RfCBY0CBO1PsMAqxxrG4Di6TfsCPP3ZRwKpA==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css" integrity="sha512-3q8fi8M0VS+X/3n64Ndpp6Bit7oXSiyCnzmlx6IDBLGlY5euFySyJ46RUlqIVs0DPCGOypqP8IRk/EyPvU28mQ==" crossorigin="anonymous" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+
+<style  type="text/css">
+  .carousel-multi-item .controls-top {
+    margin-bottom: 1.88rem;
+    text-align: center;
+  }
+
+  .carousel-multi-item .controls-top .btn-floating {
+    background: #4285f4;
+  }
+  a.waves-effect, a.waves-light {
+      display: inline-block;
+  }
+
+  .btn-floating:hover {
+
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 30%), 0 4px 15px 0 rgb(0 0 0 / 30%);
+    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 30%), 0 4px 15px 0 rgb(0 0 0 / 30%);
+  }
+  .btn-floating {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0;
+    margin: 10px;
+    overflow: hidden;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    width: 47px;
+    height: 47px;
+  }
+
+  .waves-effect {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-floating i {
+      display: inline-block;
+      width: inherit;
+      color: #fff;
+      text-align: center;
+  }
+  .btn-floating i {
+      font-size: 1.25rem;
+      line-height: 47px;
+  }
+
+    .carousel-multi-item .carousel-indicators {
+        margin-bottom: -1em;
+    }
+
+    .carousel-indicators {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 15;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-pack: center;
+          justify-content: center;
+          padding-left: 0;
+          margin-right: 15%;
+          margin-left: 15%;
+          list-style: none;
+      }
+
+
+      @media(min-width: 991px) {
+        /* Show 4th slide on md if col-md-4*/
+        .carousel-inner .active.col-lg-3.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+            position: absolute;
+            top: 0;
+            right: -33.3333%;  /*change this with javascript in the future*/
+            z-index: -1;
+            display: block;
+            visibility: visible;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 991px) {
+          /* Show 4th slide on md if col-md-4*/
+          .carousel-inner .active.col-lg-3.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+              position: absolute;
+              top: 0;
+              right: -16.6666%;  /*change this with javascript in the future*/
+              z-index: -1;
+              display: block;
+              visibility: visible;
+          }
+      }
+      @media (min-width: 576px) and (max-width: 768px) {
+          /* Show 3rd slide on sm if col-sm-6*/
+          .carousel-inner .active.col-sm-4.carousel-item + .carousel-item + .carousel-item + .carousel-item {
+              position: absolute;
+              top: 0;
+              right: -33.3333%;
+              z-index: -1;
+              display: block;
+              visibility: visible;
+          }
+      }
+      @media (min-width: 576px) and (max-width: 991px) {
+          .carousel-item {
+              margin-right: 0;
+              padding:0px;
+          }
+          /* show 3 items */
+          .carousel-inner .active,
+          .carousel-inner .active + .carousel-item,
+          .carousel-inner .active + .carousel-item + .carousel-item {
+              display: block;
+          }
+
+          .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+          .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+          .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
+              transition: none;
+              margin-right: initial;
+          }
+
+          .carousel-inner .carousel-item-next,
+          .carousel-inner .carousel-item-prev + .carousel-item {
+            position: relative;
+            transform: translate3d(0, 0, 0);
+          }
+
+          .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item {
+              position: absolute;
+              top: 0;
+              right: -33.3333%;
+              z-index: -1;
+              display: block;
+              visibility: visible;
+          }
+
+          /* left or forward direction */
+          .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+          .carousel-item-next.carousel-item-left + .carousel-item,
+          .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+          .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item {
+              position: relative;
+              transform: translate3d(-100%, 0, 0);
+              visibility: visible;
+          }
+
+          /* farthest right hidden item must be abso position for animations */
+          .carousel-inner .carousel-item-prev.carousel-item-right {
+              position: absolute;
+              top: 0;
+              left: 0;
+              z-index: -1;
+              display: block;
+              visibility: visible;
+          }
+
+          /* right or prev direction */
+          .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+          .carousel-item-prev.carousel-item-right + .carousel-item,
+          .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+          .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item {
+              position: relative;
+              transform: translate3d(100%, 0, 0);
+              visibility: visible;
+              display: block;
+              visibility: visible;
+          }
+      }
+
+      /* LG */
+      @media (min-width: 991px) {
+        .carousel-item {
+            margin-right: 0;
+            padding:0px;
+        }
+        /* show 3 items */
+        .carousel-inner .active,
+        .carousel-inner .active + .carousel-item,
+        .carousel-inner .active + .carousel-item + .carousel-item,
+        .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item{
+            display: block;
+        }
+
+        .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+        .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+        .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+        .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item{
+            transition: none;
+              margin-right: initial;
+        }
+
+        .carousel-inner .carousel-item-next,
+        .carousel-inner .carousel-item-prev + .carousel-item,
+        .carousel-inner .carousel-item-prev + .carousel-item {
+          position: relative;
+          transform: translate3d(0, 0, 0);
+        }
+
+        .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item,
+        .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: -1;
+            display: block;
+            visibility: visible;
+        }
+
+        /* left or forward direction */
+        .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+        .carousel-item-next.carousel-item-left + .carousel-item,
+        .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+        .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item ,
+        .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item  {
+            position: relative;
+            transform: translate3d(-100%, 0, 0);
+            visibility: visible;
+        }
+
+        /* farthest right hidden item must be abso position for animations */
+        .carousel-inner .carousel-item-prev.carousel-item-right {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            display: block;
+            visibility: visible;
+        }
+
+        /* right or prev direction */
+        .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+        .carousel-item-prev.carousel-item-right + .carousel-item,
+        .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+        .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+        .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item  + .carousel-item {
+            position: relative;
+            transform: translate3d(100%, 0, 0);
+            visibility: visible;
+            display: block;
+            visibility: visible;
+            padding:0;
+        }
+      }
+
+  </style>
+
+
+<section class="mt-5">
+
+  <div class="container-fluid row mx-auto ">
+
+
+    <div class="col-12 col-md-6 text-center">
+      <h1>Overall</h1>
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(6).jpg" alt="Card image cap">
+
+    </div>
+
+    <div class="col-12 col-md-6 mt-5 mt-sm-0 text-center">
+      <h1>Prediction</h1>
+      <div class="image-predict-content">
+          <div class="container-fluid">
+              <div id="mycarousel" class="carousel slide  carousel-multi-item" data-ride="carousel" data-interval="false">
+
+                  <!--/.Controls-->
+                  <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                      <div class="carousel-item col-12 col-sm-4 col-md-4 col-lg-3 active">
+
+                        <div class="card" >
+                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                                Detail
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-4 col-md-4 col-lg-3">
+
+                          <div class="card" >
+                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(1).jpg" alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <a href="#" class="btn btn-primary">Detail</a>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-4 col-md-4 col-lg-3">
+                        <div class="card" >
+                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(3).jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <a href="#" class="btn btn-primary">Detail</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-4 col-md-4 col-lg-3">
+                        <div class="card">
+                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(2).jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <a href="#" class="btn btn-primary">Detail</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-4 col-md-4 col-lg-3">
+                        <div class="card" >
+                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(5).jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <a href="#" class="btn btn-primary">Detail</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-4 col-md-4 col-lg-3">
+                        <div class="card" >
+                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(17).jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <a href="#" class="btn btn-primary">Detail</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-4 col-md-4 col-lg-3">
+                        <div class="card" >
+                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <a href="#" class="btn btn-primary">Detail</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item col-12 col-sm-4 col-md-4 col-lg-3">
+                        <div class="card">
+                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(15).jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <a href="#" class="btn btn-primary">Detail</a>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+                  <!--Controls-->
+                  <div class="controls-top">
+                    <a class="btn-floating" href="#mycarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                    <a class="btn-floating" href="#mycarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="container" id="myGroup">
+          <p>
+              <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                  content 1
+              </button>
+              <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                  Content 2
+              </button>
+          </p>
+
+          <div class="collapse" id="collapseExample1" data-parent="#myGroup">
+              <div class="card card-body" style="width:300px!important;height:300px!important;">
+                  Content 1 here
+
+                <canvas id="pie-chart" ></canvas>
+              </div>
+          </div>
+          <div class="collapse" id="collapseExample2" data-parent="#myGroup">
+              <div class="card card-body">
+                  Content 2 here
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>
+
+
+
+
+  <script type="text/javascript">
+    var pieData = {
+       labels: ["Purple", "Green", "Orange", "Yellow"],
+       datasets: [{
+         data: [20, 40, 10, 30],
+         backgroundColor: [
+              "#878BB6",
+              "#4ACAB4",
+              "#FF8153",
+              "#FFEA88"
+           ]
+        }]
+    };
+
+
+
+    // Get the context of the canvas element we want to select
+    var ctx = document.getElementById("pie-chart");
+    //new Chart(ctx).Pie(pieData);
+    /* New way to instantiate so that it do not thows Uncaught
+     TypeError: (intermediate value).Pie is not a function" */
+
+     const config = {
+      type: 'pie',
+      data: pieData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Chart.js Pie Chart'
+          }
+        }
+      },
+    };
+    var myPieChart = new Chart(ctx, config);
+
+    /*
+    Carousel
+*/
+$('#mycarousel').on('slide.bs.carousel', function (e) {
+  /*
+      CC 2.0 License Iatek LLC 2018 - Attribution required
+  */
+  var $e = $(e.relatedTarget);
+  var idx = $e.index();
+  var itemsPerSlide = 5;
+  var totalItems = $('.carousel-item').length;
+
+  if (idx >= totalItems-(itemsPerSlide-1)) {
+      var it = itemsPerSlide - (totalItems - idx);
+      for (var i=0; i<it; i++) {
+          // append slides to end
+          if (e.direction=="left") {
+              $('.carousel-item').eq(i).appendTo('.carousel-inner');
+          }
+          else {
+              $('.carousel-item').eq(0).appendTo('.carousel-inner');
+          }
+      }
+  }
+});
+    $('#feedback_form').on('submit',function(e) {
+
+      e.preventDefault();
+
+      $.ajaxSetup({
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                             break;
+                         }
+                     }
+                 }
+                 return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         }
+    });
+    var slider = document.getElementById("feedback_slider2");
+    var output = document.getElementById("feedback_sliderVal");
+    var feedback_8 = document.getElementById("feedback_8");
+    var feedback_tbsa = document.getElementById("feedback_tbsa");
+    var feedback_16 = document.getElementById("feedback_16");
+
+
+    $.ajax({
+          url: "{% url 'demo:feedbacksubmit_url' %}",
+          type: 'POST',
+          data: {
+              result_code : '{{result_code}}',
+              id : '{{predictResult.id}}',
+              feedback_8: $("#feedback_8").attr("value").toString(),
+              feedback_16: $("#feedback_16").attr("value").toString(),
+              feedback_tbsa :$("#feedback_sliderVal").attr("value").toString(),
+              dataType: "json",
+
+          },
+          success: function(data){
+
+            swal({
+              title: "Do you want to download the report file?",
+              text: "You will be downloading the report file.",
+              icon: "info",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDownload) => {
+              if (willDownload) {
+                swal("Start downloading", {
+                  icon: "success",
+                });
+                  var a = document.createElement('a');
+                  var url = data.file_url;
+                  var filename = data.file_name;
+                  a.href = url;
+                  a.download = filename;
+                  a.click();
+                  a.remove();
+              } else {
+                swal({
+                  title:"You choose to not dowloading the report file.",
+                  icon: "error",
+                });
+              }
+            });
+
+
+
+           },
+           failure: function() {
+               alert(data.msg);
+           },
+        });
+
+    });
+
+  </script>
+
+{%endblock%}

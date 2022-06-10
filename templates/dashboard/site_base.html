@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+
+{% load staticfiles%}
+
+<html lang="en" dir="ltr">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mediqu - Bootstrap Admin Dashboard </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mediqu.dexignzone.com/xhtml/images/favicon.png">
+    <link href="{% static 'dashboard/css/jqvmap.min.css" rel="stylesheet'%}">
+	   <link rel="stylesheet" href="{% static 'dashboard/css/chartist.min.css'%}">
+    <link href="{% static 'dashboard/css/style.css'%}" rel="stylesheet">
+	<link href="{% static 'dashboard/css/LineIcons.css'%}" rel="stylesheet">
+<link href="{% static 'dashboard/css/apexcharts.css'%}" rel="stylesheet">
+<link href="{% static 'dashboard/css/themify-icons.css'%}" rel="stylesheet">
+<link href="{% static 'dashboard/css/apex-custom.css'%}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+</head>
+<body data-typography="poppins" data-theme-version="light" data-layout="vertical" data-nav-headerbg="color_1" data-headerbg="color_1" data-sidebar-style="full" data-sibebarbg="color_1" data-sidebar-position="fixed" data-header-position="fixed" data-container="wide" direction="ltr" data-primary="color_1" data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+  <!--*******************
+      Preloader start
+  ********************-->
+  <div id="preloader" style="display: none;">
+      <div class="sk-three-bounce">
+          <div class="sk-child sk-bounce1"></div>
+          <div class="sk-child sk-bounce2"></div>
+          <div class="sk-child sk-bounce3"></div>
+      </div>
+  </div>
+  <!--*******************
+      Preloader end
+  ********************-->
+
+  <!--**********************************
+      Main wrapper start
+  ***********************************-->
+  <div id="main-wrapper" class="show">
+{% include "dashboard/header.html" %}
+{% include "dashboard/navbar.html"%}
+
+{%block body%}
+{%endblock%}
+
+
+<!--**********************************
+    Footer start
+***********************************-->
+{% include "dashboard/footer.html"%}
+<!--**********************************
+    Footer end
+***********************************-->
+</div>
+
+
+<!--**********************************
+Scripts
+***********************************-->
+<!-- Required vendors -->
+
+<script src="{%static 'dashboard/js/global.min.js'%}"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/metismenujs/dist/metismenujs.min.js"></script>
+<script src="{%static 'dashboard/js/deznav-init.js'%}"></script>
+<!-- Apex Chart -->
+<script src="{%static 'dashboard/js/apexcharts.js'%}"></script>
+
+<!-- Dashboard 1 -->
+<script src="{%static 'dashboard/js/dashboard-1.js'%}"></script>
+<script src="{%static 'dashboard/js/styleSwitcher.js'%}"></script>
+
+<script src="{%static 'dashboard/js/custom.min.js'%}"></script>
+
+
+
+</body></html>

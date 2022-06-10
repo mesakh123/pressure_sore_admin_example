@@ -1,0 +1,559 @@
+{%extends 'main/site_base.html' %}
+
+{%load staticfiles%}
+{%load i18n%}
+{% block body%}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js" integrity="sha512-f0VlzJbcEB6KiW8ZVtL+5HWPDyW1+nJEjguZ5IVnSQkvZbwBt2RfCBY0CBO1PsMAqxxrG4Di6TfsCPP3ZRwKpA==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css" integrity="sha512-3q8fi8M0VS+X/3n64Ndpp6Bit7oXSiyCnzmlx6IDBLGlY5euFySyJ46RUlqIVs0DPCGOypqP8IRk/EyPvU28mQ==" crossorigin="anonymous" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<script>
+ const char_options = {
+       responsive: true,
+       maintainAspectRatio: false,
+        tooltips: {
+          callbacks: {
+            label: (tooltipItem, data) => {
+				 let sum = data.datasets[0].data.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+		                  const label = data.labels[tooltipItem.index];
+		                  const val = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] *100 / sum).toFixed(2);
+		                  return label + ": " + val+" %";
+            },
+
+            formatter: (value, ctx) => {
+              let datasets = ctx.chart.data.datasets;
+               if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                 let sum = datasets[0].data.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+                 let percentage = (value*100 / sum).toFixed(2)+"%";
+                 return percentage;
+               } else {
+                 return percentage;
+               }
+            },
+
+          }
+        },
+        legend: {
+          display: true,
+          position: 'bottom',
+
+        },
+
+        legendCallback: (chart) => {
+          const renderLabels = (chart) => {
+            const { data } = chart;
+            return data.datasets[0].data
+              .map(
+                (_, i) =>
+                  `<li>
+                      <div id="legend-${i}-item" class="legend-item">
+                        <span style="background-color:
+                          ${data.datasets[0].backgroundColor[i]}">
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
+                        ${
+                          data.labels[i] &&
+                          `<span class="label">${data.labels[i]}: $${data.datasets[0].data[i]}</span>`
+                        }
+                      </div>
+                  </li>
+                `
+              )
+              .join("");
+          };
+          return `
+            <ul class="chartjs-legend">
+              ${renderLabels(chart)}
+            </ul>`;
+        },
+        title: {
+          display: false,
+          text: 'Chart.js Pie Chart'
+        },
+        plugins: {
+            datalabels: {
+                formatter: (value, ctx) => {
+                  let datasets = ctx.chart.data.datasets;
+                   if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                     let sum = datasets[0].data.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+                     let percentage = (value*100 / sum).toFixed(2)+"%";
+                     return percentage;
+                   } else {
+                     return percentage;
+                   }
+                },
+                color: '#000',
+                font:{
+                 size:13,
+                },
+            },
+
+        }
+    };
+   
+const bgColor = [
+    "rgb(255,0,0,0.6)", 
+    "rgb(0,0,255,0.6)",
+    "rgb(255,255,0,0.6)",
+  ];
+  const clsLabels = ["Granulation tissue","Eschar tissue","Slough tissue"];
+</script>
+
+<link href="{% static 'css/result.css' %}" rel="stylesheet">
+
+
+
+<section class="mt-5">
+
+  <div class="container-fluid row mx-auto ">
+  
+    <div class="col-12 d-flex justify-content-center" >
+      <table class="table table-borderless table-striped w-50">
+        <tbody>
+         
+
+          <tr>
+            <th>
+              {% trans 'Patient ID' %}
+            </th>
+            <td>
+              {{ patientData.patient_id}}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              {% trans 'Sex' %}
+            </th>
+            <td>
+              {{ patientData.sex|title}}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              {% trans 'Fever'%}
+            </th>
+            <td>
+              {%if patientData.fever %} Yes {%else%} No {%endif%}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              {%trans 'Abnormal WBC'%}
+            </th>
+            <td>
+              {%if  patientData.abnormal %} Yes {%else%} No {%endif%}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              {%trans 'HR > 90'%}
+            </th>
+            <td>
+              {%if patientData.hr %} Yes {%else%} No {%endif%}
+            </td>
+          </tr>
+
+
+          <tr>
+            <th>
+              {%trans 'Pus'%}
+            </th>
+            <td>
+              {%if patientData.pus %} Yes {%else%} No {%endif%}
+            </td>
+          </tr>
+
+
+          <tr>
+            <th>
+              {%trans 'Odorous'%}
+            </th>
+            <td>
+              {%if  patientData.odorous %} Yes {%else%} No {%endif%}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              {%trans 'Undermine'%}
+            </th>
+            <td>
+              {%if patientData.undermine %} Yes {%else%} No {%endif%}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              {%trans 'Frequency'%}
+            </th>
+            <td>
+              {{ patientData.frequency}}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              {%trans 'Dressing'%}
+            </th>
+            <td>
+              {{ patientData.get_dressing}}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              {%trans 'Comment'%}
+            </th>
+            <td>
+              {{ patientData.comments}}
+            </td>
+          </tr>
+
+
+        </tbody>
+
+
+      </table>
+
+    </div>
+
+    <div class="col-12  mt-sm-0 text-center">
+
+      <h1 class="mb-4 mt-5">Prediction</h1>
+   
+      <div class="row d-flex justify-content-center">
+        <div class="image-predict-content">
+            <div class="container-fluid">
+                <div id="mycarousel" class="carousel slide  carousel-multi-item" data-ride="carousel" data-interval="false">
+
+                    <!--/.Controls-->
+                    <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                      {% for  woundlocation,data in data_collection.items %}
+                        
+                        {% with forloop.counter as outer_counter %}
+                            <div class="carousel-item col-12 col-sm-4 col-md-4 col-lg-3 {% if forloop.first%}active {%endif%}">
+                                <div class="card" >
+                                    <img class="card-img-top" src="{{data.imageData.0.file_location}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{woundlocation}}</h5>
+                                        <button class="btn btn-primary" data-toggle="collapse" data-target="#locationDetail{{ outer_counter }}" aria-expanded="false" aria-controls="collapseExample">
+                                        {% trans 'More'%} 
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        {%endwith%}
+                      {%endfor%}
+                  </div>
+                    <!--Button-->
+                    <div class="controls-top" >
+                      <a class="btn-floating" href="#mycarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                      <a class="btn-floating" href="#mycarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+
+              <div class="container " id="myGroup">
+                  {% for woundlocation,data in data_collection.items%}
+                    {% with forloop.counter0 as mainCounter %}
+                    <div class="collapse" id="locationDetail{{forloop.counter}}" data-parent="#myGroup">
+                      
+
+                      <div id="portfolio" class="portfolio card card-body">
+
+                        <h4>{{woundlocation}}</h4>
+
+                        <div class="row">
+                          {% for index,imageInformation in data.imageData.items %}
+                            {% with forloop.counter as outer_counter %}
+                                <div class="col-sm-4 portfolio-item">
+                                  <div class="portfolio-wrap">
+                                    <img src="{{imageInformation.file_location}}" class="img-fluid" alt="">
+
+                                    <div class="portfolio-info">
+                                      <h4>{{woundlocation}} {{outer_counter}}</h4>
+                                      <p>{{woundlocation}} {{outer_counter}}</p>
+                                      <div class="portfolio-links">
+                                        <a href="{{imageInformation.file_location}}" data-gall="portfolioGallery" class="venobox" title="{{woundlocation}} {{outer_counter}}"><i class="icofont-search-2"></i></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <button class="btn btn-primary detailButton mt-2" data-toggle="collapse" data-target="#woundDetail{{ outer_counter|add:mainCounter }}" aria-expanded="false" aria-controls="woundDetail{{ outer_counter|add:mainCounter }}">Details</button>
+                                  <script>
+                                    $('.detailButton').on('click',function(){$('.detailcollapse').collapse('hide');})
+                                  </script>
+                                </div>
+                            {%endwith%}
+                          {%endfor%}
+
+                        </div>      
+                        <div class='row'>
+
+                          {%for id,data in data.imageData.items%}
+                          {%with forloop.counter as inner_counter%}
+  
+                          <div class="col-12 d-flex justify-content-center">
+                            <div class="collapse detailcollapse" id="woundDetail{{ mainCounter|add:inner_counter }}">
+                              <div class="mb-4 overallpie ">
+                                <label for="overall-{{ mainCounter|add:inner_counter }}">{{woundlocation}} - {{inner_counter}}</label>
+                                <canvas id="overall-{{ mainCounter|add:inner_counter }}"></canvas>
+                                  
+      
+                              <script>
+                                  var pixels_{{ mainCounter|add:inner_counter }}= [{{data.pixels.0}} , {{data.pixels.2}}, {{data.pixels.3}}];
+                                
+                                  var data_{{ mainCounter|add:inner_counter }} ={
+                                    labels:clsLabels,
+                                    datasets:[{
+                                      data:pixels_{{ mainCounter|add:inner_counter }} ,
+                                      backgroundColor:bgColor,
+                                    }]
+                                  };
+                                  var config_{{ mainCounter|add:inner_counter }} = {
+                                    type: 'doughnut',
+                                    data: data_{{ mainCounter|add:inner_counter }},
+                                    options: char_options,
+                                  };
+      
+                                  var ctx_overall_{{ mainCounter|add:inner_counter }} = document.getElementById("overall-{{ mainCounter|add:inner_counter }}").getContext('2d');
+                                  var PieChartOverall_{{ mainCounter|add:inner_counter }} = new Chart(ctx_overall_{{ mainCounter|add:inner_counter }}, config_{{ mainCounter|add:inner_counter }});
+                              </script>
+      
+      
+                              </div>
+                              <table class='table table-bordered mt-5'>
+                                <tbody>
+                                  <tr>
+                                    <th>
+                                      <h5 >
+                                        開始癒合的跡象
+                                      </h5>
+                                    </th>
+                                    <td>
+                                      <h5>
+                                        表皮新生 : {%if data.reep_exists%} Yes {%else%}No{%endif%}
+                                      </h5>
+                                    </td>
+              
+                                  </tr>
+                                  <tr>
+                                    <th>
+                                      <h5 >
+                                        傷口癒合的過程
+                                      </h5>
+                                    </th>
+                                    <td>
+                                      <h5>
+                                        肉芽組織佔傷口百分比 : {% if data.percentage%} {{data.percentage|floatformat:2}} % {%else%} 無任何資訊{%endif%}
+                                      </h5>
+                                    </td>
+              
+                                  </tr>
+                                  <tr>
+                                    <th>
+                                      <h5 >
+                                        傷口大小的估計
+                                      </h5>
+                                    </th>
+                                    <td>
+                                      <h5>
+                                        投射面積為 ≈ {{data.area|floatformat:2 }} cm<sup>2</sup>
+                                      </h5>
+                                    </td>
+              
+                                  </tr>
+                                  <tr>
+                                    <th>
+                                      <h5 >
+                                        相關醫療建議
+                                      </h5>
+                                    </th>
+                                    <td>
+                                      <h5>
+                                        {% if data.surgericalIntervention %}
+                                          可能需要清創手術
+                                        {%else%}
+                                          持續傷口照護
+                                        {%endif%}
+                                      </h5>
+                                    </td>
+              
+                                  </tr>
+              
+              
+                                </tbody>
+              
+                            </table>   
+                            
+                            </div>
+                           
+                          </div>
+  
+                             
+                          {%endwith%} 
+                          {%endfor%}
+                        </div>               
+
+
+                      </div>
+
+
+                    </div>
+                    {%endwith%}
+                  {%endfor%}
+
+           
+
+                              
+
+              </div>
+
+              
+
+
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+</section>
+
+
+
+
+
+
+  <script type="text/javascript">
+
+   var cardNumber = $('.card').length;
+   if(cardNumber>3){
+     var controls = document.getElementsByClassName("controls-top")[0];
+     controls.style.display = "block";
+   }
+
+    /*
+    Carousel
+*/
+$('#mycarousel').on('slide.bs.carousel', function (e) {
+  /*
+      CC 2.0 License Iatek LLC 2018 - Attribution required
+  */
+  var $e = $(e.relatedTarget);
+  var idx = $e.index();
+  var itemsPerSlide = 4;
+  var totalItems = $('.carousel-item').length;
+
+  if (idx >= totalItems-(itemsPerSlide-1)) {
+      var it = itemsPerSlide - (totalItems - idx);
+      for (var i=0; i<it; i++) {
+          // append slides to end
+          if (e.direction=="left") {
+              $('.carousel-item').eq(i).appendTo('.carousel-inner');
+          }
+          else {
+              $('.carousel-item').eq(0).appendTo('.carousel-inner');
+          }
+      }
+  }
+});
+    $('#feedback_form').on('submit',function(e) {
+
+      e.preventDefault();
+
+      $.ajaxSetup({
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                             break;
+                         }
+                     }
+                 }
+                 return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         }
+    });
+    var slider = document.getElementById("feedback_slider2");
+    var output = document.getElementById("feedback_sliderVal");
+    var feedback_8 = document.getElementById("feedback_8");
+    var feedback_tbsa = document.getElementById("feedback_tbsa");
+    var feedback_16 = document.getElementById("feedback_16");
+
+
+    $.ajax({
+          url: "{% url 'demo:feedbacksubmit_url' %}",
+          type: 'POST',
+          data: {
+              result_code : '{{result_code}}',
+              id : '{{predictResult.id}}',
+              feedback_8: $("#feedback_8").attr("value").toString(),
+              feedback_16: $("#feedback_16").attr("value").toString(),
+              feedback_tbsa :$("#feedback_sliderVal").attr("value").toString(),
+              dataType: "json",
+
+          },
+          success: function(data){
+
+            swal({
+              title: "Do you want to download the report file?",
+              text: "You will be downloading the report file.",
+              icon: "info",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDownload) => {
+              if (willDownload) {
+                swal("Start downloading", {
+                  icon: "success",
+                });
+                  var a = document.createElement('a');
+                  var url = data.file_url;
+                  var filename = data.file_name;
+                  a.href = url;
+                  a.download = filename;
+                  a.click();
+                  a.remove();
+              } else {
+                swal({
+                  title:"You choose to not dowloading the report file.",
+                  icon: "error",
+                });
+              }
+            });
+
+
+
+           },
+           failure: function() {
+               alert(data.msg);
+           },
+        });
+
+    });
+
+  </script>
+
+{%endblock%}

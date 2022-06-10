@@ -1,0 +1,29 @@
+1.
+2. 3 class deeplab
+3. add scrollbar distance at demo (10-100 cm) init:30
+
+
+second model:
+1. granulation pixel number
+2. wound size
+3. granulation / wound Ratios
+4. Need to 清創手術
+
+granulation = red
+eschar = blue
+slough tissue = yellow
+
+
+Pwound = 3 class or ulceration
+
+
+output result:
+1. Wound size =  x cm2
+2. reep = true false
+3. wound size
+
+scrollbar
+(10-80) cm init :35
+
+chart
+https://codesandbox.io/s/chartjs-legend-styling-oh3kc?fontsize=14&hidenavigation=1&theme=dark&file=/index.html:164-393

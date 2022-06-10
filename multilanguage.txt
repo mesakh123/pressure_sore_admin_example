@@ -1,0 +1,2 @@
+python manage.py makemessages -l "zh_hant"
+python manage.py compilemessages

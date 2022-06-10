@@ -1,0 +1,126 @@
+{% load i18n %}
+{% load staticfiles%}
+{% load pinax_theme_bootstrap_tags %}
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+  <div class="container d-flex align-items-center justify-content-between">
+    <div class="">
+      <a href="{% url 'home' %}"><img src="{% static 'main/img/logo5.jpg' %}" style='max-height:60px;' class="img-fluid" alt=""></a>      
+    </div>
+
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo"><img src="static/main/img/logo.png" alt="" class="img-fluid"></a>-->
+    <input type="hidden" name="" value="">
+          {% url 'home' as home_url%}
+   </input>
+    <nav class="nav-menu d-none d-lg-block ">
+      <ul class="text-center">
+        <li  {% if request.path == home_url%}class="active"{%endif%} ><a href="{% url 'home'%}#hero">{% trans 'Home'%}</a></li>
+        <li><a href="{% url 'home'%}#about">{% trans 'About'%}</a></li>
+        <li><a href="{% url 'home'%}#services">{% trans 'Real case diagnosis'%}</a></li>
+        <li><a href="{% url 'home'%}#team">{% trans 'Team'%}</a></li>
+        <li><a href="{% url 'home'%}#contact">{% trans 'Contact' %}</a></li>
+        <li class=" {% if demo_subdirectory %}active{%endif%}"><a href="{% url 'demo:burnupload_url'%}">{% trans 'Demo' %}</a></li>
+        <li>
+              <style type="text/css">
+                .form-select {
+                    display: inline;
+                    padding: 0 1.75rem 0 .75rem;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: #212529;
+                    vertical-align: middle;
+                    background-color: #fff;
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+                    background-repeat: no-repeat;
+                    background-position: right .75rem center;
+                    background-size: 16px 12px;
+                    border: 1px solid #ced4da;
+                    border-radius: .25rem;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                }
+              </style>
+              <form  method="post" id="lang_form" >
+                {%csrf_token%}
+                <!--
+                <select class="form-select" name="language" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+               -->
+
+                <select class="form-select" name="language" id="lang_option"  >
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="/{{ language.code }}/"{% if language.code == LANGUAGE_CODE %} selected{% endif %} >
+                            {{ language.name_local }}
+                        </option>
+                    {% endfor %}
+                </select>
+              </form>
+
+              <script type="text/javascript">
+
+
+
+                $.ajaxSetup({
+                     beforeSend: function(xhr, settings) {
+                         function getCookie(name) {
+                             var cookieValue = null;
+                             if (document.cookie && document.cookie != '') {
+                                 var cookies = document.cookie.split(';');
+                                 for (var i = 0; i < cookies.length; i++) {
+                                     var cookie = jQuery.trim(cookies[i]);
+                                     // Does this cookie string begin with the name we want?
+                                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                         break;
+                                     }
+                                 }
+                             }
+                             return cookieValue;
+                         }
+                         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                             // Only send the token to relative URLs i.e. locally.
+                             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                         }
+                     }
+                });
+                $(document).ready(function(e) {
+                  $("select[id=lang_option]").on('change',function() {
+                    var url = "{% url 'change_language'%}";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: "language="+this.value+"&url={{request.path|modify_url}}",
+                      success: function(data) {
+                        window.location.replace("/"+data.lang+"{{request.path|modify_url}}");
+                      }
+                    });
+                  });
+                });
+              </script>
+
+        </li>
+      </ul>
+    </nav><!-- .nav-menu -->
+
+    {% if user.is_authenticated %}
+    <span class="dropdown scrollto">
+      <button class="btn get-started-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{user.username}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{% url 'dashboard_index'%}">Dashboard</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item text-danger" href="{% url 'account_logout'%}">Logout</a>
+      </div>
+      </span>
+    {% else%}
+      <!--<a href="{% url 'account_login' %}" class="get-started-btn scrollto btn" role="btn">Login</a>-->
+    {%endif%}
+
+  </div>
+</header><!-- End Header -->

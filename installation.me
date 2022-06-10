@@ -1,0 +1,154 @@
+
+
+sudo ssh -i burnwebadmin.pem ubuntu@203.145.222.231
+
+
+full tutorial:
+https://hackernoon.com/deploy-django-app-with-nginx-gunicorn-postgresql-supervisor-9c6d556a25ac
+https://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/
+
+https:
+https://jerry.thesolarsystems.net/?p=885
+
+Create virtualenv
+install python 3.6
+1. sudo add-apt-repository ppa:deadsnakes/ppa
+2. sudo apt-get update
+3. sudo apt-get install python3.6 python3.6-dev
+4. python3.6 -m pip install --upgrade pip
+5. sudo apt install python3.6-venv
+6. sudo apt-get update
+7. sudo apt-get install python3.6-pip python3.6-dev build-essential libpq-dev postgresql postgresql-contrib python3.6-venv nginx gettext
+8. python3.6 -m venv myenv
+9. source myenv/bin/activate
+10. mkdir myproject && cd myproject
+11. git clone https://github.com/mesakh123/burnweb_with_admin.git
+12. cd burnweb_with_admin && pip install -r requirements.txt
+13. sudo apt-get install supervisor
+14. sudo nano /etc/supervisor/conf.d/gunicorn.conf
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[program:gunicorn]
+directory=/home/ubuntu/myproject/burnweb_with_admin/
+WorkingDirectory=/home/ubuntu/myproject/burnweb_with_admin/
+command=/home/ubuntu/myenv/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/myproject/burnweb_with_admin/burnweb_with_admin.sock  burnweb_with_admin.wsgi:application
+autorestart=true
+stderr_logfile=/var/log/gunicorn/gunicorn.out.log
+stdout_logfile=/var/log/gunicorn/gunicorn.err.log
+user=ubuntu
+group=www-data
+
+[group:guni]
+programs:gunicorn
+
+[Install]
+WantedBy=multi-user.target
+
+15. sudo mkdir /var/log/gunicorn/ && sudo touch /var/log/gunicorn/gunicorn.out.log && sudo touch /var/log/gunicorn/gunicorn.err.log
+
+
+16. sudo nano /etc/supervisor/conf.d/process_tasks.conf
+[program:process_tasks]
+directory=/home/ubuntu/myproject/burnweb_with_admin/
+WorkingDirectory=/home/ubuntu/myproject/burnweb_with_admin/
+command=/home/ubuntu/myenv/bin/python manage.py process_tasks
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/process_tasks/process_tasks.out.log
+stdout_logfile=/var/log/process_tasks/process_tasks.err.log
+user=ubuntu
+group=www-data
+
+[group:ptasks]
+programs:process_tasks
+
+[Install]
+WantedBy=multi-user.target
+
+17. sudo mkdir /var/log/process_tasks/ && sudo touch /var/log/process_tasks/process_tasks.out.log && sudo touch /var/log/process_tasks/process_tasks.err.log
+
+
+18. sudo supervisorctl reread && sudo supervisorctl update
+19. sudo nano /etc/nginx/sites-available/pressure_sore_with_admin
+server {
+   listen 80;
+    server_name 203.145.222.231;
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/ubuntu/myproject/burnweb_with_admin/;
+        expires 365d;
+    }
+
+    location /media/ {
+        root /home/ubuntu/myproject/burnweb_with_admin/;
+    }
+
+    location / {
+        client_max_body_size 100M;
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/myproject/burnweb_with_admin/burnweb_with_admin.sock;
+    }
+
+}
+
+20. sudo ln -s /etc/nginx/sites-available/pressure_sore_with_admin /etc/nginx/sites-enabled
+21. sudo nginx -t
+22. sudo systemctl restart nginx
+
+problem:
+1. language not working in production
+change zh_hant folder to zh_Hant folder
+2. can't access admin page (Site matching query does not exist):
+a. site_id problem
+python manage.py shell
+from django.contrib.sites.models import Site
+new_site = Site.objects.create(domain='foo.com', name='foo.com')
+print (new_site.id)
+3. new configuration not chnagin
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl reload
+sudo systemctl nginx reload
+
+
+13. vi ~/.bashrc, add
+   export PYTHONPATH=/home/ubuntu/myproject/myprojectenv/lib/python3.6/site-packages:$PYTHONPATH
+
+
+14. how to add translation:
+
+in settins.py add:
+a.from django.utils.translation import gettext_lazy
+b in middleware
+    'django.middleware.locale.LocaleMiddleware',
+c. templates->options->context_processors:
+        'django.template.context_processors.i18n', # this one
+    LANGUAGES = (
+        ('en', _('English')),
+        ('zh-hant', _('Traditional Chinese')),
+    )
+    USE_I18N = True
+
+    USE_L10N = True
+
+    USE_TZ = True
+
+    LOCALE_PATHS = (os.path.join(BASE_DIR,'main/locale'),)
+
+in project.urls.py :
+from django.conf.urls.i18n import i18n_patterns
+urlpatterns += i18n_patterns(
+    path("",include('main.urls')),
+)
+
+in app views.py:
+from django.utils import translation
+
+in first time:
+python manage.py makemessages -l 'zh_hant'
+
+find 'main/locale' folder, change content
+
+python manage.py compilemessages

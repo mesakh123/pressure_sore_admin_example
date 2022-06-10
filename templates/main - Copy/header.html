@@ -1,0 +1,72 @@
+{% load i18n %}
+{% load staticfiles%}
+{% load pinax_theme_bootstrap_tags %}
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <a href="{% url 'home' %}"><img src="{% static 'main/img/logo.png' %}" style='max-height:60px;' class="img-fluid" alt=""></a>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo"><img src="static/main/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav class="nav-menu d-none d-lg-block ">
+      <ul>
+        <li class="active"><a href="{% url 'home'%}#hero">{% trans 'Home'%}</a></li>
+        <li><a href="{% url 'home'%}#about">{% trans 'About'%}</a></li>
+        <li><a href="{% url 'home'%}#services">{% trans 'Real case diagnosis'%}</a></li>
+        <li><a href="{% url 'home'%}#team">{% trans 'Team'%}</a></li>
+
+        <li><a href="{% url 'home'%}#contact">{% trans 'Contact' %}</a></li>
+        <li>
+              <style type="text/css">
+                .form-select {
+                    display: block;
+                    padding: 0 1.75rem 0 .75rem;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: #212529;
+                    vertical-align: middle;
+                    background-color: #fff;
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+                    background-repeat: no-repeat;
+                    background-position: right .75rem center;
+                    background-size: 16px 12px;
+                    border: 1px solid #ced4da;
+                    border-radius: .25rem;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                }
+              </style>
+              <select class="form-select" name="language" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                  {% get_current_language as LANGUAGE_CODE %}
+                  {% get_available_languages as LANGUAGES %}
+                  {% get_language_info_list for LANGUAGES as languages %}
+                  {% for language in languages %}
+                      <option value="/{{ language.code }}{{ request.path|modify_url}}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %} >
+                          {{ language.name_local }}
+                      </option>
+                  {% endfor %}
+              </select>
+        </li>
+      </ul>
+    </nav><!-- .nav-menu -->
+
+    {% if user.is_authenticated %}
+    <span class="dropdown scrollto">
+      <button class="btn get-started-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{user.username}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{% url 'dashboard_index'%}">Dashboard</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item text-danger" href="{% url 'account_logout'%}">Logout</a>
+      </div>
+      </span>
+    {% else%}
+      <!--<a href="{% url 'account_login' %}" class="get-started-btn scrollto btn" role="btn">Login</a>-->
+    {%endif%}
+
+  </div>
+</header><!-- End Header -->

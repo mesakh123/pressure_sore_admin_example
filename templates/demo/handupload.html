@@ -1,0 +1,75 @@
+
+{%extends 'main/site_base.html' %}
+{% load i18n %}
+{% load staticfiles%}
+{%block body%}
+<section class="mt-5">
+        <div class='col-12 text-center header'>
+            <h2>{% trans 'Please Upload Hand Palm Image'%}</h2>
+        </div>
+
+        <div class='col-12'>
+            <form method="post" action="" id="POItablediv" class='col-12' >
+              {%csrf_token%}
+                <style>
+                    div {
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    input {
+                        position: absolute;
+                        font-size: 50px;
+                        opacity: 0;
+                        right: 0;
+                        top: 0;
+                    }
+                </style>
+
+                <div class='row d-flex justify-content-center mb-1'>
+                    <span id='here'></span>
+                    {% if hand_image_session%}
+                      <img id="handupload" src={{hand_image_session.0}} name="images" class="upload-image" style="max-width:300px;max-height:300px;" value="{{hand_image_session.0}}" />
+
+                    {%endif%}
+                </div>
+
+                <div class="row d-flex justify-content-center">
+                    <div class="file btn btn-lg btn-info">
+                        {% trans 'Upload'%}
+                        <input type="file" name="file" accept="image/*" />
+                    </div>
+                </div>
+
+                <div class='row d-flex justify-content-center mt-2'>
+
+                    <a class='btn btn-secondary mr-2' href="{% url 'demo:burnupload_url'%}">{% trans 'Back'%}</a>
+                    <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+
+                </div>
+
+            </form>
+        </div>
+        <div class="tutorial mt-3 text-center ">
+            <span style="font-size:35px;font-weight:bold;">使用方法 :</span>
+            <div class="sub-tutorial">
+                <img src="{% static 'images/tutorial5.jpg'  %}" alt="images" name="show" class="img-fluid" >
+            </div>
+
+        </div>
+
+    </section>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="{% static 'js/handupload.js' %}">
+
+
+
+
+{%endblock%}

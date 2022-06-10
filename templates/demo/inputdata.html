@@ -1,0 +1,264 @@
+{%extends 'main/site_base.html' %}
+
+{% load i18n %}
+{%load staticfiles%}
+{%block body%}
+
+<section class="mt-5">
+
+    <div class='col-12 text-center header'>
+        <h2>{% trans 'Please Input Patient Data'%}</h2>
+        {% for message in messages%}
+          <div class=" col-md-6 d-flex justify-content-center mx-auto {{message.tags}}">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div >
+        {%endfor%}
+    </div>
+    <div class='col-12 text-center'>
+
+        <div class='col-md-8 d-flex justify-content-center mx-auto'>
+            <form action="" method="post" class="cform-form mt-2" role='form'>
+                {%csrf_token%}
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                  <label for="medicianid" class="font-weight-bold align-self-center col-5">{% trans 'Medician ID'%}</label>
+                  <input id="medicianid" type="text" name="medicianid" class="cform-text form-control col-5" required
+                      title="Your medician id" value="{%if data.medicianid %}{{data.medicianid}}{%endif%}">
+              </div>
+                <div class="form-group row mx-auto d-flex justify-content-center">
+                    <label for="patientid" class="font-weight-bold align-self-center col-5">{% trans 'Patient ID' %}</label>
+                    <input id="patientid" type="text" name="patientid" class="cform-text form-control col-5" required
+                        title="Your patientid" value="{%if data.patientid %}{{data.patientid}}{%endif%}" >
+                </div>
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+                    <label for="age" class="font-weight-bold align-self-center col-5">{%trans 'Age'%}</label>
+                    <input id="age" type="number" name="age" min="1" class="cform-text form-control col-5"  required value="{%if data.age %}{{data.age}}{%endif%}"
+                        title="Your patientid">
+                </div>
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="gender" class="font-weight-bold align-self-end col-5">{%trans "Sex"%}</label>
+                    <select name="gender" id='gender' class="cform-text form-control col-5">
+                        <option value="f" {%if data.gender is 'f'%}selected{%endif%} >女</option>
+                        <option value="m" {%if data.gender is 'm'%}selected{%endif%} >男</option>
+                        <option value="o" {%if data.gender is 'o'%}selected{%endif%} >其他</option>
+
+                    </select>
+                </div>
+                <!--
+                <div class="form-group row mx-auto d-flex justify-content-center">
+                    <label for="height" class="font-weight-bold align-self-end col-4">{%trans 'Height'%}</label>
+                    <input id="height" type="number" name="height" min="1" class="cform-text form-control col-5" required value="{{data.height}}">
+                </div>
+
+                <div class="form-group row mx-auto d-flex justify-content-center">
+
+                    <label for="weight" class="font-weight-bold align-self-end col-4">{% trans 'Weight'%}</label>
+                    <input id="weight" type="number" name="weight" min="1" class="cform-text form-control col-5" required value="{{data.weight}}"
+                       >
+                </div>
+                -->
+
+
+
+
+
+
+              <div class="form-group row mx-auto d-flex justify-content-center">
+                <label for="feveroption" class="font-weight-bold align-self-end col-5 control-label">{%trans 'Fever'%}</label>
+                <div class="align-self-start col-5">
+                  <div class="float-left">
+                    <input type="radio" name="feveroption" id="feveroption" value="True" {%if data.feveroption is "True"%}checked{%endif%}>
+                    <label>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="radio" name="feveroption" id="feveroption" value="False"{%if data.feveroption is "False"%}checked{%endif%}>
+                    <label>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row mx-auto d-flex justify-content-center">
+                <label for="abnormaloption" class="font-weight-bold align-self-end col-5 control-label">{%trans 'Abnormal WBC'%}</label>
+                <div class="align-self-start col-5">
+                  <div class="float-left">
+                    <input type="radio" name="abnormaloption" id="abnormaloption" value="True" {%if data.abnormaloption is "True"%}checked{%endif%}>
+                    <label>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="radio" name="abnormaloption" id="abnormaloption" value="False"{%if data.abnormaloption is "False"%}checked{%endif%}>
+                    <label>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row mx-auto d-flex justify-content-center">
+                <label for="hroption" class="font-weight-bold align-self-end col-5 control-label">{%trans 'HR > 90'%}</label>
+                <div class="align-self-start col-5">
+                  <div class="float-left">
+                    <input type="radio" name="hroption" id="hroption" value="True" {%if data.hroption is "True"%}checked{%endif%}>
+                    <label>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="radio" name="hroption" id="hroption" value="False"{%if data.hroption is "False"%}checked{%endif%}>
+                    <label>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row mx-auto d-flex justify-content-center">
+                <label for="pusoption" class="font-weight-bold align-self-end col-5 control-label">{%trans 'Pus'%}</label>
+                <div class="align-self-start col-5">
+                  <div class="float-left">
+                    <input type="radio" name="pusoption" id="pusoption" value="True" {%if data.pusoption is "True"%}checked{%endif%}>
+                    <label>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="radio" name="pusoption" id="pusoption" value="False"{%if data.pusoption is "False"%}checked{%endif%}>
+                    <label>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row mx-auto d-flex justify-content-center">
+                <label for="odorousoption" class="font-weight-bold align-self-end col-5 control-label">{%trans 'Odorous'%}</label>
+                <div class="align-self-start col-5">
+                  <div class="float-left">
+                    <input type="radio" name="odorousoption" id="odorousoption" value="True" {%if data.odorousoption is "True"%}checked{%endif%}>
+                    <label>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="radio" name="odorousoption" id="odorousoption" value="False"{%if data.odorousoption is "False"%}checked{%endif%}>
+                    <label>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row mx-auto d-flex justify-content-center">
+                <label for="undermineoption" class="font-weight-bold align-self-end col-5 control-label">{%trans 'Undermine'%}</label>
+                <div class="align-self-start col-5">
+                  <div class="float-left">
+                    <input type="radio" name="undermineoption" id="undermineoption" value="True" {%if data.undermineoption is "True"%}checked{%endif%}>
+                    <label>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="radio" name="undermineoption" id="undermineoption" value="False"{%if data.undermineoption is "False"%}checked{%endif%}>
+                    <label>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row mx-auto d-flex justify-content-center">
+
+                  <label for="frequencyoption" class="font-weight-bold align-self-end col-5">{%trans 'Frequency'%}</label>
+                  <select name="frequencyoption" id='frequencyoption' class="cform-text form-control col-5">
+                      <option value="qd" {%if data.frequencyoption == "qd"%}selected{%endif%} >QD</option>
+                      <option value="bid" {%if data.frequencyoption == "bid"%}selected{%endif%} >BID</option>
+                      <option value="tid" {%if data.frequencyoption == "tid"%}selected{%endif%} >TID</option>
+                     
+                  </select>
+              </div>
+
+
+              
+              <div class="form-group row mx-auto d-flex justify-content-center">
+
+                <label for="dressingoption" class="font-weight-bold align-self-end col-5">{%trans 'Dressing'%}</label>
+                <select name="dressingoption" id='dressingoption' class="cform-text form-control col-5">
+                    <option value="wd" {%if data.dressingoption == "wd"%}selected{%endif%} >Wet Dressing</option>
+                    <option value="oint" {%if data.dressingoption == "oint"%}selected{%endif%} >Ointment</option>
+                    <option value="fd" {%if data.dressingoption == "fd"%}selected{%endif%} >Fiber Dressing</option>
+                    <option value="fod" {%if data.dressingoption == "fod"%}selected{%endif%} >Foam Dressing</option>
+                    <option value="vac" {%if data.dressingoption == "vac"%}selected{%endif%} >VAC</option>
+                    <option value="others" {%if data.dressingoption == "others"%}selected{%endif%} >Others</option>
+                </select>
+            </div>
+
+
+
+
+
+             <div class="form-group row mx-auto d-flex justify-content-center">
+                  <label for="comments" class="font-weight-bold col-5">{%trans 'Comment'%}</label>
+                  <textarea name="comments" cols="40" rows="10" title="Drop us a line." class='form-control col-5'>{{data.comments}}</textarea>
+              </div>
+
+
+
+
+
+              <div class='form-group row mx-auto d-flex justify-content-center'>
+                      <button id="clear" name="cleardata" class="btn btn-lg btn-secondary mr-1" >{%trans 'Clear'%}</button>
+                      <button id="submit" value="submit" name="submit" class="btn btn-lg btn-primary" type="submit" >{% trans 'Submit'%}</button>
+              </div>
+
+
+            </form>
+
+        </div>
+        <div class="col-12">
+          <img src="/static/main/img/undermine.png" alt="images" class="img-fluid upload-image" >
+         
+        </div>
+                      
+    </div>
+</section>
+
+<script type="text/javascript">
+  var slider = document.getElementById("distanceRange");
+  var output = document.getElementById("textInput");
+  slider.oninput=function(){
+    output.innerHTML = this.value;
+    output.value=this.value;
+    slider.value = this.value;
+  }
+
+  var elements = document.querySelectorAll('input,select,textarea');
+  var invalidListener = function(){ this.scrollIntoView(false); };
+
+  for(var i = elements.length; i--;)
+      elements[i].addEventListener('invalid', invalidListener);
+
+</script>
+
+
+<script type="text/javascript" src="{% static 'js/inputdata.js' %}">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"></script>
+
+
+{%endblock%}

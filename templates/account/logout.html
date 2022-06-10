@@ -1,0 +1,22 @@
+{% extends "main/site_base.html" %}
+
+{% load i18n %}
+
+{% load staticfiles%}
+{% block head_title %}{% trans "Log out" %}{% endblock %}
+
+{% block body %}
+  <link rel="stylesheet" href="{% static 'account/css/style.css'%}">
+    <section id="hero" class="d-flex align-items-center login-dark">
+        <div class="container">
+            <form method="POST" action="{% url "account_logout" %}">
+                <legend>{% trans "Log out" %}</legend>
+                <p>{% trans "Are you sure you want to log out?" %}</p>
+                <fieldset class="text-right">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">{% trans "Log out" %}</button>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+{% endblock %}

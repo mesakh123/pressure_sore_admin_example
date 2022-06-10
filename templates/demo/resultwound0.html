@@ -1,0 +1,378 @@
+{%extends 'main/site_base.html' %}
+
+{%load staticfiles%}
+{% block body%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js" integrity="sha512-f0VlzJbcEB6KiW8ZVtL+5HWPDyW1+nJEjguZ5IVnSQkvZbwBt2RfCBY0CBO1PsMAqxxrG4Di6TfsCPP3ZRwKpA==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css" integrity="sha512-3q8fi8M0VS+X/3n64Ndpp6Bit7oXSiyCnzmlx6IDBLGlY5euFySyJ46RUlqIVs0DPCGOypqP8IRk/EyPvU28mQ==" crossorigin="anonymous" />
+
+
+<style media="screen">
+  .carousel-multi-item .controls-top {
+    margin-bottom: 1.88rem;
+    text-align: center;
+  }
+
+  .carousel-multi-item .controls-top .btn-floating {
+    background: #4285f4;
+  }
+  a.waves-effect, a.waves-light {
+      display: inline-block;
+  }
+
+  .btn-floating:hover {
+
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 30%), 0 4px 15px 0 rgb(0 0 0 / 30%);
+    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 30%), 0 4px 15px 0 rgb(0 0 0 / 30%);
+  }
+  .btn-floating {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0;
+    margin: 10px;
+    overflow: hidden;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    width: 47px;
+    height: 47px;
+  }
+
+  .waves-effect {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-floating i {
+      display: inline-block;
+      width: inherit;
+      color: #fff;
+      text-align: center;
+  }
+  .btn-floating i {
+      font-size: 1.25rem;
+      line-height: 47px;
+  }
+
+  .carousel-multi-item .carousel-indicators {
+      margin-bottom: -1em;
+  }
+
+  .carousel-indicators {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 15;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-left: 0;
+        margin-right: 15%;
+        margin-left: 15%;
+        list-style: none;
+    }
+    @media only screen and (max-width: 992px)
+    .carousel-multi-item .carousel-indicators li {
+        margin-bottom: -1.88rem;
+    }
+    .carousel-multi-item .carousel-indicators li {
+        width: 1.25rem;
+        max-width: 1.25rem;
+        height: 1.25rem;
+        margin-bottom: -3.75rem;
+        background-color: #4285f4;
+    }
+
+    .img {
+      max-width: 300px;
+      height: 300px;
+    }
+    .carousel .carousel-indicators li {
+        width: .625rem;
+        height: .625rem;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+    .carousel-indicators li {
+        box-sizing: content-box;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        width: 30px;
+        height: 3px;
+        margin-right: 3px;
+        margin-left: 3px;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: #fff;
+        background-clip: padding-box;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        opacity: .5;
+        transition: opacity .6s ease;
+    }
+  </style>
+
+
+<section class="mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="row">
+        <!--Carousel Wrapper-->
+        <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel" data-interval="2000">
+
+          <!--Controls-->
+          <div class="controls-top">
+            <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+            <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+          </div>
+          <!--/.Controls-->
+
+          <!--Indicators-->
+          <ol class="carousel-indicators">
+            <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+            <li data-target="#multi-item-example" data-slide-to="1"></li>
+            <li data-target="#multi-item-example" data-slide-to="2"></li>
+            <li data-target="#multi-item-example" data-slide-to="3"></li>
+            <li data-target="#multi-item-example" data-slide-to="4"></li>
+            <li data-target="#multi-item-example" data-slide-to="5"></li>
+            <li data-target="#multi-item-example" data-slide-to="6"></li>
+          </ol>
+          <!--/.Indicators-->
+
+          <!--Slides-->
+          <div class="carousel-inner" role="listbox">
+
+            <!--First slide-->
+            <div class="carousel-item active">
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                      <h4 class="card-title">Card title</h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                      <a class="btn btn-primary">Button</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                      <h4 class="card-title">Card title</h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                      <a class="btn btn-primary">Button</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                      <h4 class="card-title">Card title</h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                      <a class="btn btn-primary">Button</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!--/.First slide-->
+
+            <!--Second slide-->
+            <div class="carousel-item">
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                      <h4 class="card-title">Card title</h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                      <a class="btn btn-primary">Button</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                      <h4 class="card-title">Card title</h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                      <a class="btn btn-primary">Button</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                      <h4 class="card-title">Card title</h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                      <a class="btn btn-primary">Button</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!--/.Second slide-->
+
+            <!--Third slide-->
+            <div class="carousel-item">
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                      <h4 class="card-title">Card title</h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                      <a class="btn btn-primary">Button</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <!--/.Third slide-->
+
+          </div>
+          <!--/.Slides-->
+
+        </div>
+        <!--/.Carousel Wrapper-->
+
+      </div>
+
+    </div>
+
+
+
+</section>
+
+
+
+
+  <script type="text/javascript">
+
+    $('#feedback_form').on('submit',function(e) {
+
+      e.preventDefault();
+
+      $.ajaxSetup({
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                             break;
+                         }
+                     }
+                 }
+                 return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         }
+    });
+    var slider = document.getElementById("feedback_slider2");
+    var output = document.getElementById("feedback_sliderVal");
+    var feedback_8 = document.getElementById("feedback_8");
+    var feedback_tbsa = document.getElementById("feedback_tbsa");
+    var feedback_16 = document.getElementById("feedback_16");
+
+
+    $.ajax({
+          url: "{% url 'demo:feedbacksubmit_url' %}",
+          type: 'POST',
+          data: {
+              result_code : '{{result_code}}',
+              id : '{{predictResult.id}}',
+              feedback_8: $("#feedback_8").attr("value").toString(),
+              feedback_16: $("#feedback_16").attr("value").toString(),
+              feedback_tbsa :$("#feedback_sliderVal").attr("value").toString(),
+              dataType: "json",
+
+          },
+          success: function(data){
+
+            swal({
+              title: "Do you want to download the report file?",
+              text: "You will be downloading the report file.",
+              icon: "info",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDownload) => {
+              if (willDownload) {
+                swal("Start downloading", {
+                  icon: "success",
+                });
+                  var a = document.createElement('a');
+                  var url = data.file_url;
+                  var filename = data.file_name;
+                  a.href = url;
+                  a.download = filename;
+                  a.click();
+                  a.remove();
+              } else {
+                swal({
+                  title:"You choose to not dowloading the report file.",
+                  icon: "error",
+                });
+              }
+            });
+
+
+
+           },
+           failure: function() {
+               alert(data.msg);
+           },
+        });
+
+    });
+
+  </script>
+
+{%endblock%}
