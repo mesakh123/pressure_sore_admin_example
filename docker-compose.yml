@@ -1,0 +1,126 @@
+version: "3"
+
+services:
+  backend:
+    restart: always
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/dev.Dockerfile
+      args:
+        - GIT_TOKEN=$GIT_TOKEN
+    image: django_backend
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    env_file:
+      - ./env/local.env
+    expose:
+      - "9999"
+    volumes:
+      - ./:/app/
+      - ./:/app:cached # Make Git work in Dev Container
+      - ./static:/app/static
+      - ./media:/app/media
+    networks:
+      - mynetwork
+    command: /start
+    healthcheck:
+      test: ["CMD", "curl","--fail","http://localhost:9999/","||","exit","1"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+
+  db:
+    restart: always
+    image: postgres:14
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+    env_file:
+      - ./env/local.env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata/
+    networks:
+      - mynetwork
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready  -d $${POSTGRES_DB}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  nginx-backend:
+    restart: always
+    build:
+      context : ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+    volumes:
+      - ./static:/app/static
+      - ./media:/app/media
+    networks:
+      - mynetwork
+
+  process-task-backend:
+    restart: always
+    command: python manage.py process_tasks
+    env_file:
+      - ./env/local.env
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/dev.Dockerfile
+    depends_on:
+      - backend
+    volumes:
+      - ./static:/app/static
+      - ./media:/app/media
+    networks:
+      - mynetwork
+  # nginx-frontend:
+  #   restart: always
+  #   build: ./frontend/nginx
+  #   ports:
+  #     - 3000:80
+  #   depends_on:
+  #     - nginx-backend
+  #     - frontend
+  #   networks:
+  #     - mynetwork
+
+
+  # backend-flower:
+  #   restart: always
+  #   image: mher/flower:0.9.7
+  #   command: ['flower', '--broker=redis://backend-redis:6379', '--port=5555']
+  #   volumes:
+  #     - redis_data:/data
+  #   networks:
+  #     - mynetwork
+  #   expose:
+  #     - 5555
+  # nginx-flower:
+  #   build:
+  #     context : ./backend/nginx
+  #     dockerfile: Dockerfile.flower
+  #   ports:
+  #     - 5555:80
+  #   depends_on:
+  #     - backend-flower
+  #   networks:
+  #     - mynetwork
+
+
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  db_data:
+  redis_data:
+  pre_commit_cache:
+    driver: local

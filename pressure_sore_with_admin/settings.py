@@ -29,18 +29,14 @@ ALLOWED_HOSTS = ['*',]
 PLATFORMTYPE= platform.system()
 
 
-
-
 # SECURITY WARNING: don't run with debug turned on in production!
-if PLATFORMTYPE is 'Windows' :
-    DEBUG=True
-else:
-    DEBUG = False
 
+DEBUG = PLATFORMTYPE is 'Windows'
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-SITE_ID=3
+SITE_ID = os.environ.get("SITE_ID", 2)
 # Application definition
 
 INSTALLED_APPS = [
@@ -76,7 +72,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     "account.middleware.LocaleMiddleware",
+    "account.middleware.LocaleMiddleware",
     'django.middleware.locale.LocaleMiddleware',
     "account.middleware.TimezoneMiddleware",
     'django_cookies_samesite.middleware.CookiesSameSite',
@@ -111,30 +107,23 @@ WSGI_APPLICATION = 'pressure_sore_with_admin.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 postgresql = False
-
+DB_PORT = os.environ.get("POSTGRES_PORT")
+DB_NAME = os.environ.get("POSTGRES_DB")
+DB_USER = os.environ.get("POSTGRES_USER")
+DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+DB_HOST = os.environ.get("POSTGRES_HOST")
 if postgresql:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'app_db',
-            'USER': 'admin',
-            'PASSWORD': 'BURNsegmentation01',
-            'HOST': 'localhost',
-            'PORT': '5432',
+            'NAME': DB_NAME,
+            'USER': DB_USER,
+            'PASSWORD': DB_PASSWORD,
+            'HOST': DB_HOST,
+            'PORT': DB_PORT,
         }
 
     }
-
-    DATABASES = {
-                'default': {
-                            'ENGINE': 'django.db.backends.mysql',
-                            'NAME': 'app_db',
-                            'USER': 'admin',
-                            'PASSWORD': 'BURNsegmentation01',
-                            'HOST': 'localhost',
-                            'PORT': '3306',
-                        }
-                }
 
 else:
     DATABASES = {
@@ -184,9 +173,9 @@ LOCALE_PATHS = (os.path.join(BASE_DIR,'main/locale'),)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR,  'static'),)
+# STATICFILES_DIRS = (os.path.join(BASE_DIR,  'static'),)
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800
@@ -202,3 +191,6 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 SESSION_EXPIRE_AT_BROWSER_CLOSE=False
 
+# MODEL SERVER
+HAND_MODEL = os.environ.get('HAND_MODEL', "203.145.218.119")
+BURN_MODEL = os.environ.get('BURN_MODEL', "203.145.218.208")

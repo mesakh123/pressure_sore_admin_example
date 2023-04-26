@@ -4,6 +4,7 @@ import cv2
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files.base import ContentFile
+from django.conf import settings
 import numpy as np
 from .mrcnn import visualize
 from .models import WoundDocument,PatientData
@@ -12,6 +13,11 @@ import base64
 import json
 from PIL import Image
 import io
+
+
+
+BURN_MODEL = settings.BURN_MODEL
+HAND_MODEL = settings.HAND_MODEL
 
 from pressure_sore_with_admin.settings import PLATFORMTYPE
 @background(schedule=0)
@@ -41,13 +47,12 @@ def predict_image_in_background(id,types='burn'):
     im_encode = base64.b64encode(buffer.getvalue()).decode("utf-8")
 
     if types=='burn':
-        url = 'http://203.145.218.42:8081/v1/model_ps/zhang_pressure_sore:predict'
+        url = f"http://{BURN_MODEL}/v1/model_ps/zhang_pressure_sore:predict"
         #result = burn_detect_mask(image)
         result = requests.post(url, data=im_encode, timeout=600).json()
-
         predict_image_field = location.burn_predict_docfile
     else:
-        url = 'http://103.124.72.45:9000/v1/models/mask_rcnn_hand_1000:predict'
+        url = f"http://{HAND_MODEL}/v1/models/mask_rcnn_hand_1000:predict"
         #result = hand_detect_mask(image)
         result = requests.post(url, data=im_encode, timeout=600).json()
         predict_image_field = location.hand_predict_docfile
