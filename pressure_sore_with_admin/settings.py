@@ -78,7 +78,7 @@ MIDDLEWARE = [
     'django_cookies_samesite.middleware.CookiesSameSite',
 ]
 
-BACKGROUND_TASK_RUN_ASYNC = True
+BACKGROUND_TASK_RUN_ASYNC = False
 SESSION_COOKIE_SAMESITE = 'strict'
 ROOT_URLCONF = 'pressure_sore_with_admin.urls'
 TEMPLATES = [
