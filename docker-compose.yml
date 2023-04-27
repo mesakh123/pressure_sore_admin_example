@@ -65,21 +65,21 @@ services:
     networks:
       - mynetwork
 
-  process-task-backend:
-    restart: always
-    command: python manage.py process_tasks
-    env_file:
-      - ./env/local.env
-    build:
-      context: ./
-      dockerfile: ./dockerfiles/dev.Dockerfile
-    depends_on:
-      - backend
-    volumes:
-      - ./static:/app/static
-      - ./media:/app/media
-    networks:
-      - mynetwork
+  # process-task-backend:
+  #   restart: always
+  #   command: python manage.py process_tasks
+  #   env_file:
+  #     - ./env/local.env
+  #   build:
+  #     context: ./
+  #     dockerfile: ./dockerfiles/dev.Dockerfile
+  #   depends_on:
+  #     - backend
+  #   volumes:
+  #     - ./static:/app/static
+  #     - ./media:/app/media
+  #   networks:
+  #     - mynetwork
   # nginx-frontend:
   #   restart: always
   #   build: ./frontend/nginx

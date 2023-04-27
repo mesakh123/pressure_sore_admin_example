@@ -46,9 +46,9 @@ RUN chmod +x /start
 
 COPY ./ .
 
-# COPY supervisor_services/process_tasks.conf /etc/supervisor/conf.d/gunicorn.conf
-# RUN service supervisor force-reload
-# RUN supervisorctl reread && supervisorctl update
+COPY supervisor_services/process_tasks.conf /etc/supervisor/conf.d/gunicorn.conf
+RUN service supervisor force-reload
+RUN supervisorctl reread && supervisorctl update
 
 EXPOSE 9999
 
