@@ -15,7 +15,7 @@
    </input>
     <nav class="nav-menu d-none d-lg-block ">
       <ul class="text-center">
-        <li  {% if request.path == home_url%}class="active"{%endif%} ><a href="{% url 'home'%}#hero">{% trans 'Home'%}</a></li>
+        <li  {% if request.path is home_url%}class="active"{%endif%} ><a href="{% url 'home'%}#hero">{% trans 'Home'%}</a></li>
         <li><a href="{% url 'home'%}#about">{% trans 'About'%}</a></li>
         <li><a href="{% url 'home'%}#services">{% trans 'Real case diagnosis'%}</a></li>
         <li><a href="{% url 'home'%}#team">{% trans 'Team'%}</a></li>

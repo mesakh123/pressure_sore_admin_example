@@ -181,9 +181,9 @@ def upload_process(request,types="burn"):
 
             file_location = str(newdoc).split("media")[1]
             if PLATFORMTYPE is "Windows":
-                newdoc.file_location = "\media"+file_location.replace("ori",'resized')
+                newdoc.file_location = "media/"+str(newdoc).split("/media/")[1].replace("ori", 'resized')
             else:
-                newdoc.file_location = "/media"+file_location.replace("ori",'resized')
+                newdoc.file_location = "media/"+str(newdoc).split("/media/")[1].replace("ori", 'resized')
 
             newdoc.save()
             image_np_resized = cv2.cvtColor(image_np_resized,cv2.COLOR_BGR2RGB)

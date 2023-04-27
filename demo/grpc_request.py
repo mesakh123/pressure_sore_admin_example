@@ -26,9 +26,9 @@ def predict_image_in_background(id,types='burn'):
         class_names = ['BG', 'burn']
         location= WoundDocument.objects.filter(pk=id).first()
     else:
-        print("Predict hand started")
         class_names = ['BG','palm']
         location = HandDocument.objects.filter(pk=id).first()
+    print("Predict hand started")
 
     if PLATFORMTYPE is 'Windows':
         folder , file_name = str(location).rsplit("\\",1)
@@ -45,8 +45,9 @@ def predict_image_in_background(id,types='burn'):
     buffer = BytesIO()
     image.save(buffer, format='JPEG')
     im_encode = base64.b64encode(buffer.getvalue()).decode("utf-8")
-
+    print(f"BURN_MODEL ",BURN_MODEL)
     if types=='burn':
+        print("Burn start")
         url = f"http://{BURN_MODEL}/v1/model_ps/zhang_pressure_sore:predict"
         #result = burn_detect_mask(image)
         result = requests.post(url, data=im_encode, timeout=600).json()

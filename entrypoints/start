@@ -5,7 +5,7 @@ set -o pipefail
 set -o nounset
 
 python manage.py makemigrations 
-python manage.py makemigrations demo
+python manage.py makemigrations demo account
 
 python manage.py migrate
 
